@@ -30,16 +30,31 @@ xhr.onload = function(){
             CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
-        //
-        let Item1 = document.getElementsByClassName("Item");
-        console.log(Item1);
-        Item1.addEventListener('click', event => {
-            console.log("OK");
-            event.preventDefault();
-            Details(this);
-        })
+
+        let Item = document.getElementsByClassName("Item");
+        console.log(Item);
+
+        Item[0].addEventListener("click",details(Item));
+
+        // Récupération de l'ID dans localStorage
+        function details (Item){
+            let Current ="";
+            for (i=0; i < HTMLCollection.length; i++){
+                Current = Item[i].id;
+                if (Item[i].id === Current){
+                    console.log(Item[i].id);
+                    localStorage.setItem("ID",Item[i].id);
+                }
+                else{
+                    Counter++;
+                    console.log(Counter);
+                }
+            }
+            
+        }
 
     }
+
 };
 
 // Fonction de création d'un produit
@@ -66,7 +81,6 @@ function addElement (id,name,imageUrl,description,price){
     
     let link = document.createElement("a");
     link.setAttribute("href","produits.html");
-    link.setAttribute("class",id + " test");
 
     link.appendChild(document.createTextNode(id));
     td1.appendChild(link);
@@ -103,12 +117,4 @@ function addElement (id,name,imageUrl,description,price){
     tr.appendChild(td5);
 
     document.getElementById("ProductList").append(tr);
-}
-
-//Se rendre sur la page d'un produit
-
-function Details (Item) {
-   // localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
-   // console.log(localStorage.getItem("ID"));
-   console.log(Item);
 }
