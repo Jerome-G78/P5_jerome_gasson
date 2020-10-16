@@ -97,7 +97,6 @@ function addElement (id,name,imageUrl,description,price){
     
     let link = document.createElement("a");
     link.setAttribute("href","produits.html");
-    link.setAttribute("class",id + " test");
 
     link.appendChild(document.createTextNode(id));
     td1.appendChild(link);
