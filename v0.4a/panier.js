@@ -40,7 +40,7 @@ function f_valid(e){                                // Création de la fonction 
         NF.style.color="orange";
     }
 
-    else if (prenom.validity.valueMissing) {
+    if (prenom.validity.valueMissing) {
         e.preventDefault();                         
         PF.textContent = "Prénom manquant";
         PF.style.color = "red";
@@ -52,7 +52,7 @@ function f_valid(e){                                // Création de la fonction 
         PF.style.color="orange";
     }
 
-    else if (adresse.validity.valueMissing) {
+    if (adresse.validity.valueMissing) {
         e.preventDefault();                         
         AF.textContent = "Adresse manquante";
         AF.style.color = "red";
@@ -64,7 +64,7 @@ function f_valid(e){                                // Création de la fonction 
         AF.style.color="orange";
     }
 
-    else if (ville.validity.valueMissing) {
+    if (ville.validity.valueMissing) {
         e.preventDefault();                         
         VF.textContent = "Ville manquante";
         VF.style.color = "red";
@@ -76,7 +76,7 @@ function f_valid(e){                                // Création de la fonction 
         VF.style.color="orange";
     }
 
-    else if (email.validity.valueMissing) {
+    if (email.validity.valueMissing) {
         e.preventDefault();                         
         EF.textContent = "E-Mail manquant";
         EF.style.color = "red";
