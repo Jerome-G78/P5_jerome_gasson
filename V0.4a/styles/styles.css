@@ -1,0 +1,122 @@
+/* Fiche de Styles*/
+
+/* Mise en page Générale */
+@font-face 
+{
+	/* Police Générale */
+
+	font-family: 'belligerent';
+	src: url('../fonts/Belligerent-Madness/belligerent.woff') format('woff');
+}
+
+body
+{
+    font-family: 'belligerent';
+    font-size: 1.2em;
+    /* BASE EM 16px */
+
+    background-color:#f3e9f1;
+    /* RESET */
+    margin:0;
+    padding:0;
+}
+
+#Banner
+{
+    width:100%;
+    height:auto;
+    text-align: center;
+
+    background-color:#f3e9f1;
+/*  border:1px solid red; /* DEBUG */
+}
+
+#Banner img
+{
+    margin: 1em 0;
+/*  border:1px solid red; /* DEBUG */
+}
+
+#Footer
+{
+    width:100%;
+    height:auto;
+
+    padding: 0.001em 0;
+
+    text-align: center;
+    background-color:#f3e9f1;
+/*  border:1px solid red; /* DEBUG */
+}
+
+/* Mise en page du Menu */
+
+nav li
+{
+    display: inline-block;
+    padding:0 2em;
+    margin:0 0;
+    text-align: center;
+/*  border:1px solid red; /* DEBUG */
+}
+
+.Menu ul
+{
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+
+    list-style-type: none;
+
+    background:-webkit-linear-gradient(to bottom right, #d8852e, #905bfd);
+	background:-moz-linear-gradient(to bottom right, #d8852e, #905bfd);
+	background:-o-linear-gradient(to bottom right, #d8852e, #905bfd);
+    background:linear-gradient(to bottom right, #d8852e, #905bfd);
+    
+    border:1px solid transparent;
+}
+
+.Menu a
+{
+    color:black;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.Menu a:hover
+{
+    color:white;
+    border: 1px solid green;
+}
+
+/* Tableau Recapitulatif */
+
+.Recapitulatif
+{
+    display: flex;
+    justify-content: center;
+    margin: 2em 3em;
+    padding: 1em 1em;
+    border-radius:0.43em;
+    background-color: #905bfd;
+    box-shadow:0 0 0.5em #d8852e;
+}
+
+table, th, td, tr
+{
+    text-align: center;
+    border-collapse:collapse;
+    border: 0.005em solid #d8852e;
+}
+
+/* Validation */
+.Validation
+{
+    margin: 2em 3em;
+    padding: 1em 1em;
+    border-radius:0.43em;
+    background-color: #905bfd;
+    box-shadow:0 0 0.5em #d8852e;
+}

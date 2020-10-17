@@ -35,6 +35,16 @@ xhr.onload = function(){
         let Item = document.getElementsByClassName("Item");
         console.log(Item);
 
+        for (let element of Item){     // La variable element récupère l'index actuel HTMLCollection de Item
+            element.addEventListener('click', event => {
+                console.log("OK");
+                // event.preventDefault();
+                localStorage.setItem("ID",element.id);
+                Details(this);
+            })
+        }
+
+        /*
         Item[0].addEventListener('click', event => {
             console.log("OK");
             // event.preventDefault();
@@ -69,7 +79,7 @@ xhr.onload = function(){
             localStorage.setItem("ID",Item[4].id);
             Details(this);
         })
-
+        */
     }
 };
 
