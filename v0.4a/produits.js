@@ -3,7 +3,8 @@
 // Variables globales
 let CAM="";
 let Lense="";
-let ID=localStorage.getItem("ID");  // Fixer la variable à l'élément séléctionnée
+let Qty=localStorage.setItem("qty",0);  // Initialiser une quantité
+let ID=localStorage.getItem("ID");      // Fixer la variable à l'élément séléctionnée
 
 // Requête serveur AJAX
 
@@ -53,6 +54,17 @@ xhr.onload = function(){
         // Ajouter au panier
 
         let btn = document.getElementById("AddCart");
+        btn.addEventListener('click', function(){
+            let id = localStorage.getItem("ID");
+            let lense = localStorage.getItem("lense");
+            let qty = 1;
+
+            localStorage.setItem(id+"-Cart-qty", qty);
+            localStorage.setItem(id+"-Cart-lense", lense);
+
+        });
+
+        /*
         btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));
 
         function addToCart (id,name,imageUrl,description,lense,price){
@@ -60,7 +72,7 @@ xhr.onload = function(){
             this.imageUrl = imageUrl,
             this.description = description,
             this.lense = lense,
-            this.price =price
+            this.price = price
         
             localStorage.setItem(id+"-Cart-name", this.name);
             localStorage.setItem(id+"-Cart-imageUrl", this.imageUrl);
@@ -71,6 +83,7 @@ xhr.onload = function(){
             console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.lense +" - " + this.price);
             alert("Produit ajouté!");
         }
+        */
 
     }
 };
@@ -138,7 +151,9 @@ function addElement (id,name,imageUrl,description,lense1,lense2,price){
 
     td4.appendChild(lenses);
     lenses.appendChild(L1);
-    lenses.appendChild(L2);
+
+    if (lense2 !=null){
+    lenses.appendChild(L2);}
     tr.appendChild(td4);
 
     let td5 = document.createElement("td");

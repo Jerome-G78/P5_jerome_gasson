@@ -2,6 +2,8 @@
 
 // Variables
 Lense = "";
+Qty = 0;
+
 // Requête serveur AJAX
 
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
@@ -25,13 +27,16 @@ xhr.onload = function(){
         console.log(xhr.response);              // Récupération des informations dans la console
 
         for (i =0; i < xhr.response.length; i++){   // Affichage des produits
-            if (localStorage.getItem(xhr.response[i]._id+"-Cart-lense") !=null){
+            if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
+                Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
                 CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
-                addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price);
+                addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
                 Total(CAM.price);
             }
+
         }
+        
     }
 };
 
@@ -51,7 +56,7 @@ function CreateItem (ID,name,imageUrl,description,lense,price){
 
 // Ajout du produit au tableau 
 
-function addElement (id,name,imageUrl,description,lense,price){
+function addElement (id,name,imageUrl,description,lense,qty,price){
 
     let tr = document.createElement("tr");
     tr.id = id;
@@ -87,10 +92,17 @@ function addElement (id,name,imageUrl,description,lense,price){
     tr.appendChild(td4);
 
     let td5 = document.createElement("td");
-    td5.setAttribute("class","price");
-
-    td5.appendChild(document.createTextNode(price));
+    td5.setAttribute("class","Qty");
+    
+    td5.appendChild(document.createTextNode(qty));
+    
     tr.appendChild(td5);
+
+    let td6 = document.createElement("td");
+    td6.setAttribute("class","price");
+
+    td6.appendChild(document.createTextNode(price));
+    tr.appendChild(td6);
 
     document.getElementById("ProductList").append(tr);
 }
@@ -98,7 +110,7 @@ function addElement (id,name,imageUrl,description,lense,price){
 // Mise à jour du prix
 function Total (price){
     let Total = document.getElementById("Total").innerHTML;
-    Total = price + Number(document.getElementById("Total").innerHTML);
+    Total = price * Qty + Number(document.getElementById("Total").innerHTML);
     document.getElementById("Total").innerHTML = Total;
 }
 
