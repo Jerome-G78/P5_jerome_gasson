@@ -2,6 +2,7 @@
 
 // Variables globales
 let CAM="";
+let Lense="";
 let ID=localStorage.getItem("ID");  // Fixer la variable à l'élément séléctionnée
 
 // Requête serveur AJAX
@@ -40,28 +41,35 @@ xhr.onload = function(){
         for (let element of lense){
             element.addEventListener("click", event => {
             console.log("OK");
-            event.preventDefault();
+            // event.preventDefault();
+            Lense = element.value;
             localStorage.setItem("lense",element.value);
             })
+
+            Lense = element.value;
+            localStorage.setItem("lense",element.value);
         }
 
         // Ajouter au panier
 
         let btn = document.getElementById("AddCart");
-        btn.addEventListener("click", addToCart(CAM.name,CAM.imageUrl,CAM.description,CAM.price));
+        btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));
 
-        function addToCart (name,imageUrl,description,price){
+        function addToCart (id,name,imageUrl,description,lense,price){
             this.name = name,
             this.imageUrl = imageUrl,
             this.description = description,
+            this.lense = lense,
             this.price =price
-
-            localStorage.setItem("name", this.name);
-            localStorage.setItem("imageUrl", this.imageUrl);
-            localStorage.setItem("description", this.description);
-            localStorage.setItem("price", this.price);
-
-            console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.price);
+        
+            localStorage.setItem(id+"-Cart-name", this.name);
+            localStorage.setItem(id+"-Cart-imageUrl", this.imageUrl);
+            localStorage.setItem(id+"-Cart-description", this.description);
+            localStorage.setItem(id+"-Cart-lense",this.lense);
+            localStorage.setItem(id+"-Cart-price", this.price);
+        
+            console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.lense +" - " + this.price);
+            alert("Produit ajouté!");
         }
 
     }

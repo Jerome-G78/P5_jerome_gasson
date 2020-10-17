@@ -37,8 +37,8 @@
             <form method="post" action="traitement.php">
                 <table>
                     <caption>Votre panier</caption>
-                    <thead>
-                        <tr>
+                    <thead class="thead-dark">
+                        <tr class="text-center">
                             <th>Produit</th>
                             <th>Image</th>
                             <th>description</th>
@@ -49,17 +49,10 @@
                     <tfoot>
                         <tr>
                             <td colspan="4">Total de votre commande</td>
-                            <td>280</td>
+                            <td id="Total">0</td>
                         </tr>
                     </tfoot>
-                    <tbody>
-                        <tr>
-                            <td id="name">CAM01</td>
-                            <td id="image">IMG Url</td>
-                            <td id="description">Decription du produit vendu</td>
-                            <td id="Lentille">Lense</td>
-                            <td id="price">140</td>
-                        </tr>
+                    <tbody id="ProductList">
                     </tbody>
                 </table>
 
