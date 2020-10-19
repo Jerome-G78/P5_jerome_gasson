@@ -34,7 +34,7 @@
         
         <div class="Recapitulatif">
 
-            <form method="post" action="traitement.php">
+            <form id="commander" method="POST" action="validate.html">
                 <table>
                     <caption>Votre panier</caption>
                     <thead class="thead-dark">
@@ -56,6 +56,12 @@
                     <tbody id="ProductList">
                     </tbody>
                 </table>
+
+                <div class="row"> 
+                    <div class="col text-center">
+                        <input class="center btn btn-danger" id ="clean" type="button" value="Vider le panier"/>
+                    </div>
+                </div>
 
                 <div class="row"> 
                     <div class="col text-center">

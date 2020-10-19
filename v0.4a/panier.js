@@ -1,6 +1,8 @@
 /* Fichier JavaScript */
 
 // Variables
+ID="";
+products=[];
 Lense = "";
 Qty = 0;
 
@@ -28,6 +30,7 @@ xhr.onload = function(){
 
         for (i =0; i < xhr.response.length; i++){   // Affichage des produits
             if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
+                // products = Array.push(xhr.response[i]._id);
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
                 Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
                 CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
@@ -39,7 +42,6 @@ xhr.onload = function(){
         
     }
 };
-
 
 // Fonction de création d'un produit
 
@@ -114,6 +116,13 @@ function Total (price){
     document.getElementById("Total").innerHTML = Total;
 }
 
+// Vider mon panier
+let clear = document.getElementById("clean");
+clear.addEventListener("click", function(){
+    localStorage.clear();
+    document.location.href="index.html";
+});
+
 // Verification des informations entrées par l'utilisateur, avant validation
 
 // Récupération des éléments
@@ -139,15 +148,21 @@ npv = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎ
 mail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 adr = /([0-9a-zA-Z,\.]*) ?([0-9]) ?([a-zA-Z]*)/;
 
+
+// Evenements
+prenom.addEventListener("input",function(){
+    NF.textContent = "";
+});
+
 // Fonction
+
 validation.addEventListener('click',f_valid);
 
 function f_valid(e){                                // Création de la fonction associé
-    NF.textContent="";
-    PF.textContent="";
-    AF.textContent="";
-    VF.textContent="";
-    EF.textContent="";
+    
+    
+
+    // Verification des données
 
     if (nom.validity.valueMissing) {
         e.preventDefault();                         // blocage de l'envoie du formulaire
@@ -158,6 +173,12 @@ function f_valid(e){                                // Création de la fonction 
         e.preventDefault();
         NF.textContent = "Format incorrect";
         NF.style.color = "orange";
+    }
+    else{                                           // préparation des données
+        NF.textContent="";
+        let myName = nom.value;
+        localStorage.setItem("myName",myName);
+        console.log(nom.value);
     }
 
     if (prenom.validity.valueMissing) {
@@ -170,6 +191,12 @@ function f_valid(e){                                // Création de la fonction 
         PF.textContent = "Format incorrect";
         PF.style.color = "orange";
     }
+    else{
+        PF.textContent="";
+        let myFistName = prenom.value;
+        localStorage.setItem("myFisrtName",myFistName);
+        console.log(prenom.value);
+    }
 
     if (adresse.validity.valueMissing) {
         e.preventDefault();                         
@@ -180,6 +207,13 @@ function f_valid(e){                                // Création de la fonction 
         e.preventDefault();
         AF.textContent = "Format incorrect";
         AF.style.color = "orange";
+    }
+    else{
+        AF.textContent="";
+        let myAdress = adresse.value;
+        localStorage.setItem("myAdress",myAdress);
+        console.log(adresse.value);
+        
     }
 
     if (ville.validity.valueMissing) {
@@ -192,6 +226,12 @@ function f_valid(e){                                // Création de la fonction 
         VF.textContent = "Format incorrect";
         VF.style.color = "orange";
     }
+    else{
+        VF.textContent="";
+        let myCity = ville.value;
+        localStorage.setItem("myCity",myCity);
+        console.log(ville.value);
+    }
 
     if (email.validity.valueMissing) {
         e.preventDefault();                         
@@ -203,8 +243,39 @@ function f_valid(e){                                // Création de la fonction 
         EF.textContent = "Format incorrect";
         EF.style.color = "orange";
     }
-
     else{
-        // Envoie du formulaire
+        EF.textContent="";
+        let myEmail = email.value;
+        localStorage.setItem("myEmail",myEmail);
+        console.log(email.value);
     }
+
+    // Envoie du formulaire POST
+    document.forms["commander"].addEventListener("submit",sendData(e));
+
+}
+
+function sendData (e){
+    let contact = {
+        "prénom" : prenom.value,
+        "nom" : nom.value,
+        "adresse" : adresse.value,
+        "ville" : ville.value,
+        "adresse électronique" : email.value
+    }
+
+    let data = JSON.stringify(contact); // transformer le JSON en STRING
+
+    // verification des données
+    console.log(data);
+    console.log(products);
+
+    // Requête serveur AJAX
+
+    let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
+    xhr.open("POST","http://localhost:3000/api/cameras/order");                         // On initialise notre requête avec open()
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");           // Option requise pour la methode POST
+    xhr.send("contact="+ data +"&products="+ products);                                 // On envoie la requête
+
+    e.preventDefault();
 }
