@@ -30,7 +30,7 @@ xhr.onload = function(){
 
         for (i =0; i < xhr.response.length; i++){   // Affichage des produits
             if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                // products = Array.push(xhr.response[i]._id);
+                products[products.length] = (xhr.response[i]._id);
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
                 Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
                 CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
@@ -39,12 +39,22 @@ xhr.onload = function(){
             }
 
         }
+
+        if(Cart.innerHTML != "0"){
+            hideElement();
         
-    }
-};
+            // masquer d'éléments
+            function hideElement(){
+                let emptyCart = document.getElementById("emptyCart");
+                console.log(emptyCart);
+                emptyCart.style.display="none";
+            }
+        }
+    
+    };
+}
 
 // Fonction de création d'un produit
-
 function CreateItem (ID,name,imageUrl,description,lense,price){
     this._id = ID,
     this.name = name,
@@ -57,7 +67,6 @@ function CreateItem (ID,name,imageUrl,description,lense,price){
 }
 
 // Ajout du produit au tableau 
-
 function addElement (id,name,imageUrl,description,lense,qty,price){
 
     let tr = document.createElement("tr");
@@ -126,7 +135,7 @@ clear.addEventListener("click", function(){
 // Verification des informations entrées par l'utilisateur, avant validation
 
 // Récupération des éléments
-let nom="", prenom="", adresse="", ville="", email="", validation="";
+let nom="", prenom="", adresse="", ville="", email="", validation="", Cart="";
 let NF="", PF="", AF="", VF="", EF="";
 
 nom = document.getElementById("nom");
@@ -135,6 +144,7 @@ adresse = document.getElementById("adress");
 ville = document.getElementById("city");
 email = document.getElementById("email");
 validation = document.getElementById("validation");
+Cart = document.getElementById("Total");
 
 NF = document.getElementById("ErrorNom");
 PF = document.getElementById("ErrorPrenom");
@@ -148,8 +158,8 @@ npv = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎ
 mail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 adr = /([0-9a-zA-Z,\.]*) ?([0-9]) ?([a-zA-Z]*)/;
 
-
 // Evenements
+
 nom.addEventListener("input",function(){
     NF.textContent = "";
 });
@@ -170,104 +180,108 @@ email.addEventListener("input",function(){
     EF.textContent = "";
 });
 
-// Fonction
-
 validation.addEventListener('click',f_valid);
 
+
+// Valider la commande
 function f_valid(e){                                // Création de la fonction associé
-    
-    
+    if(Cart.innerHTML != "0"){
 
-    // Verification des données
+        // Verification des données
 
-    if (nom.validity.valueMissing) {
-        e.preventDefault();                         // blocage de l'envoie du formulaire
-        NF.textContent = "Nom manquant";            // Affichage d'un message d'erreur
-        NF.style.color = "red";
-    }
-    else if(npv.test(nom.value) == false) {
-        e.preventDefault();
-        NF.textContent = "Format incorrect";
-        NF.style.color = "orange";
-    }
-    else{                                           // préparation des données
-        NF.textContent="";
-        let myName = nom.value;
-        localStorage.setItem("myName",myName);
-        console.log(nom.value);
-    }
+        if (nom.validity.valueMissing) {
+            e.preventDefault();                         // blocage de l'envoie du formulaire
+            NF.textContent = "Nom manquant";            // Affichage d'un message d'erreur
+            NF.style.color = "red";
+        }
+        else if(npv.test(nom.value) == false) {
+            e.preventDefault();
+            NF.textContent = "Format incorrect";
+            NF.style.color = "orange";
+        }
+        else{                                           // préparation des données
+            NF.textContent="";
+            let myName = nom.value;
+            localStorage.setItem("myName",myName);
+            console.log(nom.value);
+        }
 
-    if (prenom.validity.valueMissing) {
-        e.preventDefault();                         
-        PF.textContent = "Prénom manquant";
-        PF.style.color = "red";
-    }
-    else if(npv.test(prenom.value) == false) {
-        e.preventDefault();
-        PF.textContent = "Format incorrect";
-        PF.style.color = "orange";
-    }
-    else{
-        PF.textContent="";
-        let myFistName = prenom.value;
-        localStorage.setItem("myFisrtName",myFistName);
-        console.log(prenom.value);
-    }
+        if (prenom.validity.valueMissing) {
+            e.preventDefault();                         
+            PF.textContent = "Prénom manquant";
+            PF.style.color = "red";
+        }
+        else if(npv.test(prenom.value) == false) {
+            e.preventDefault();
+            PF.textContent = "Format incorrect";
+            PF.style.color = "orange";
+        }
+        else{
+            PF.textContent="";
+            let myFistName = prenom.value;
+            localStorage.setItem("myFisrtName",myFistName);
+            console.log(prenom.value);
+        }
 
-    if (adresse.validity.valueMissing) {
-        e.preventDefault();                         
-        AF.textContent = "Adresse manquante";
-        AF.style.color = "red";
-    }
-    else if(adr.test(adresse.value) == false) {
-        e.preventDefault();
-        AF.textContent = "Format incorrect";
-        AF.style.color = "orange";
-    }
-    else{
-        AF.textContent="";
-        let myAdress = adresse.value;
-        localStorage.setItem("myAdress",myAdress);
-        console.log(adresse.value);
-        
-    }
+        if (adresse.validity.valueMissing) {
+            e.preventDefault();                         
+            AF.textContent = "Adresse manquante";
+            AF.style.color = "red";
+        }
+        else if(adr.test(adresse.value) == false) {
+            e.preventDefault();
+            AF.textContent = "Format incorrect";
+            AF.style.color = "orange";
+        }
+        else{
+            AF.textContent="";
+            let myAdress = adresse.value;
+            localStorage.setItem("myAdress",myAdress);
+            console.log(adresse.value);
+            
+        }
 
-    if (ville.validity.valueMissing) {
-        e.preventDefault();                         
-        VF.textContent = "Ville manquante";
-        VF.style.color = "red";
-    }
-    else if(npv.test(ville.value) == false) {
-        e.preventDefault();
-        VF.textContent = "Format incorrect";
-        VF.style.color = "orange";
-    }
-    else{
-        VF.textContent="";
-        let myCity = ville.value;
-        localStorage.setItem("myCity",myCity);
-        console.log(ville.value);
-    }
+        if (ville.validity.valueMissing) {
+            e.preventDefault();                         
+            VF.textContent = "Ville manquante";
+            VF.style.color = "red";
+        }
+        else if(npv.test(ville.value) == false) {
+            e.preventDefault();
+            VF.textContent = "Format incorrect";
+            VF.style.color = "orange";
+        }
+        else{
+            VF.textContent="";
+            let myCity = ville.value;
+            localStorage.setItem("myCity",myCity);
+            console.log(ville.value);
+        }
 
-    if (email.validity.valueMissing) {
-        e.preventDefault();                         
-        EF.textContent = "E-Mail manquant";
-        EF.style.color = "red";
-    }
-    else if(mail.test(email.value) == false) {
-        e.preventDefault();
-        EF.textContent = "Format incorrect";
-        EF.style.color = "orange";
-    }
-    else{
-        EF.textContent="";
-        let myEmail = email.value;
-        localStorage.setItem("myEmail",myEmail);
-        console.log(email.value);
-    }
+        if (email.validity.valueMissing) {
+            e.preventDefault();                         
+            EF.textContent = "E-Mail manquant";
+            EF.style.color = "red";
+        }
+        else if(mail.test(email.value) == false) {
+            e.preventDefault();
+            EF.textContent = "Format incorrect";
+            EF.style.color = "orange";
+        }
+        else{
+            EF.textContent="";
+            let myEmail = email.value;
+            localStorage.setItem("myEmail",myEmail);
+            console.log(email.value);
+        }
 
-    // Envoie du formulaire POST
-    document.forms["commander"].addEventListener("submit",sendData(e));
+        // Envoie du formulaire POST
+        document.forms["commander"].addEventListener("submit",sendData(e));
+    }
+    else
+    {
+        alert("votre panier est vide");
+    }
 
 }
 

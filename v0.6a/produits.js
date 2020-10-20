@@ -31,7 +31,8 @@ xhr.onload = function(){
         for (i =0; i < xhr.response.length; i++){   // Affichage du produit séléctionnée
             if (xhr.response[i]._id == ID){
             CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
-            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);}
+            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);
+            }
         }
 
         // Personalisation
