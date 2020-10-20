@@ -150,8 +150,24 @@ adr = /([0-9a-zA-Z,\.]*) ?([0-9]) ?([a-zA-Z]*)/;
 
 
 // Evenements
-prenom.addEventListener("input",function(){
+nom.addEventListener("input",function(){
     NF.textContent = "";
+});
+
+prenom.addEventListener("input",function(){
+    PF.textContent = "";
+});
+
+adresse.addEventListener("input",function(){
+    AF.textContent = "";
+});
+
+ville.addEventListener("input",function(){
+    VF.textContent = "";
+});
+
+email.addEventListener("input",function(){
+    EF.textContent = "";
 });
 
 // Fonction
