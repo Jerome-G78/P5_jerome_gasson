@@ -30,7 +30,7 @@ xhr.onload = function(){
 
         for (i =0; i < xhr.response.length; i++){   // Affichage des produits
             if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                products[products.length] = (xhr.response[i]._id);
+                products[products.length] = (xhr.response[i]._id);              // Ajout de l'élément au tableau products
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
                 Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
                 CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
@@ -129,7 +129,7 @@ function Total (price){
 let clear = document.getElementById("clean");
 clear.addEventListener("click", function(){
     localStorage.clear();
-    document.location.href="index.html";
+    document.location.reload();
 });
 
 // Verification des informations entrées par l'utilisateur, avant validation
@@ -296,7 +296,7 @@ function sendData (e){
 
     let data = JSON.stringify(contact); // transformer le JSON en STRING
 
-    // verification des données
+    // Affichage des données dans la console
     console.log(data);
     console.log(products);
 
