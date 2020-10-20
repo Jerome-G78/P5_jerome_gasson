@@ -30,9 +30,11 @@ xhr.onload = function(){
 
         for (i =0; i < xhr.response.length; i++){   // Affichage des produits
             if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                products[products.length] = (xhr.response[i]._id);              // Ajout de l'élément au tableau products
+                product = new addProdID (xhr.response[i]._id);                  // Ajout de l'élément au tableau products   
+
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
                 Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
+
                 CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
                 addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
                 Total(CAM.price);
@@ -43,7 +45,7 @@ xhr.onload = function(){
         if(Cart.innerHTML != "0"){
             hideElement();
         
-            // masquer d'éléments
+            // masquer l'élément
             function hideElement(){
                 let emptyCart = document.getElementById("emptyCart");
                 console.log(emptyCart);
@@ -116,6 +118,11 @@ function addElement (id,name,imageUrl,description,lense,qty,price){
     tr.appendChild(td6);
 
     document.getElementById("ProductList").append(tr);
+}
+
+// productIDs
+function addProdID (id){
+    products[products.length] = id;
 }
 
 // Mise à jour du prix
@@ -203,7 +210,7 @@ function f_valid(e){                                // Création de la fonction 
             NF.textContent="";
             let myName = nom.value;
             localStorage.setItem("myName",myName);
-            console.log(nom.value);
+            console.log(nom.value + " - OK!");
         }
 
         if (prenom.validity.valueMissing) {
@@ -220,7 +227,7 @@ function f_valid(e){                                // Création de la fonction 
             PF.textContent="";
             let myFistName = prenom.value;
             localStorage.setItem("myFisrtName",myFistName);
-            console.log(prenom.value);
+            console.log(prenom.value + "- OK!");
         }
 
         if (adresse.validity.valueMissing) {
@@ -237,7 +244,7 @@ function f_valid(e){                                // Création de la fonction 
             AF.textContent="";
             let myAdress = adresse.value;
             localStorage.setItem("myAdress",myAdress);
-            console.log(adresse.value);
+            console.log(adresse.value + " - OK!");
             
         }
 
@@ -255,7 +262,7 @@ function f_valid(e){                                // Création de la fonction 
             VF.textContent="";
             let myCity = ville.value;
             localStorage.setItem("myCity",myCity);
-            console.log(ville.value);
+            console.log(ville.value + " - OK!");
         }
 
         if (email.validity.valueMissing) {
@@ -272,40 +279,60 @@ function f_valid(e){                                // Création de la fonction 
             EF.textContent="";
             let myEmail = email.value;
             localStorage.setItem("myEmail",myEmail);
-            console.log(email.value);
+            console.log(email.value + " - OK!");
         }
 
-        // Envoie du formulaire POST
-        document.forms["commander"].addEventListener("submit",sendData(e));
+        if(nom.value != "" && prenom.value != "" && adresse.value != "" && ville.value != "" && email.value != ""){
+            // Envoie du formulaire POST
+            document.forms["commander"].addEventListener("submit",sendData(e));
+        }
+        
     }
     else
     {
-        alert("votre panier est vide");
+        alert("Votre panier est vide!");
     }
 
 }
 
 function sendData (e){
-    let contact = {
-        "prénom" : prenom.value,
-        "nom" : nom.value,
-        "adresse" : adresse.value,
-        "ville" : ville.value,
-        "adresse électronique" : email.value
+    // Création de l'objet Contact
+
+    function createContact (firstName,lastName,address,city,mail){
+        this.firstName = firstName,
+        this.lastName = lastName,
+        this.address = address,
+        this.city = city,
+        this.email = mail
     }
 
-    let data = JSON.stringify(contact); // transformer le JSON en STRING
+    data = new createContact(nom.value,prenom.value,adresse.value,ville.value,email.value);
+
+    let contact = JSON.stringify(data);     // transformer le JSON en STRING
 
     // Affichage des données dans la console
-    console.log(data);
-    console.log(products);
+    console.log("- Contact : "+contact);
+    console.log("- Products: "+product);
+
+    let order = {contact,product};
+    console.log( "Order :" +order);
 
     // Requête serveur AJAX
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order");                         // On initialise notre requête avec open()
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");           // Option requise pour la methode POST
-    xhr.send("contact="+ data +"&products="+ products);                                 // On envoie la requête
+    xhr.send(order);                                    // On envoie la requête
+
+    // Si le status HTTP n'est pas 200
+    if (xhr.status != 200){
+        // On affiche le status et le message correspondant
+        alert("Erreur " + xhr.status + " : " + xhr.statusText);
+    }
+    else{
+        // Si le status HTTP est 200, on affiche la réponse
+        console.log(xhr.response);              // Récupération des informations dans la console
+    }
 
     e.preventDefault();
 }
