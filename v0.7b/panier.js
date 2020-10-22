@@ -22,7 +22,7 @@ xhr.onload = function(){
     // Si le status HTTP n'est pas 200
     if (xhr.status != 200){
         // On affiche le status et le message correspondant
-        alert("Erreur " + xhr.status + " : " + xhr.statusText);
+        alert("Erreur " + xhr.status + " : " + xhr.statusText); 
     }
     else{
         // Si le status HTTP est 200, on affiche la réponse
