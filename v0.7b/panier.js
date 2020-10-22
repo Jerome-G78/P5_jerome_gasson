@@ -297,7 +297,8 @@ function f_valid(e){                                // Création de la fonction 
 
 function sendData (e){
     e.preventDefault();
-    // Création de l'objet Contact
+    
+    // Création de l'objet Contact (class)
 
     function createContact (firstName,lastName,address,city,mail){
         this.firstName = firstName,
@@ -315,7 +316,7 @@ function sendData (e){
 
     let contact = new createContact(nom.value,prenom.value,adresse.value,ville.value,email.value);
 
-    // Création de l'Objet Tableau
+    // Création de l'Objet Tableau (class)
 
     function createTable (productID){
             this.products = productID;
@@ -335,7 +336,7 @@ function sendData (e){
     // Requête serveur AJAX
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
-    xhr.open("POST","http://localhost:3000/api/cameras/order");                         // On initialise notre requête avec open()
+    xhr.open("POST","http://localhost:3000/api/cameras/order", true);                         // On initialise notre requête avec open()
     xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
     xhr.send(order);                                                                    // On envoie la requête
 
