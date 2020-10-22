@@ -331,12 +331,12 @@ function sendData (e){
 
     let order = {contact,products};
     console.log( "Order :" +order);
-
+    
     // Requête serveur AJAX
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order");                         // On initialise notre requête avec open()
-    xhr.setRequestHeader("Content-type","application/json");                            // Option requise pour la methode POST envoie JSON
+    xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
     xhr.send(order);                                                                    // On envoie la requête
 
     xhr.onerror = function(){
