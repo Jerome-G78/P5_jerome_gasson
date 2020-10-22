@@ -332,7 +332,7 @@ function sendData (e){
     let order = {contact,products};
     console.log( "Order :" +order);
 
-    // Requête serveur AJAX
+    // Requête serveur AJAX --
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order");                         // On initialise notre requête avec open()
