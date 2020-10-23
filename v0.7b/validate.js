@@ -5,6 +5,7 @@ ID="";
 productID=[];
 Lense = "";
 Qty = 0;
+DataParse ="";
 
 // Requête serveur AJAX
 
@@ -113,4 +114,12 @@ function Total (price){
     Total = price * Qty + Number(document.getElementById("Total").innerHTML);
     document.getElementById("Total").innerHTML = Total;
 }
+
+// JSON.pase (récupération des objets retourné par le serveur)
+Dataparse = JSON.parse(localStorage.getItem("POST-response"));
+console.log("START");
+console.log(Dataparse);
+console.log("END");
+
+// Affichage de l'order ID
 
