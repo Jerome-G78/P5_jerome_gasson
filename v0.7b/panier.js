@@ -26,11 +26,11 @@ xhr.onload = function(){
     }
     else{
         // Si le status HTTP est 200, on affiche la réponse
-        console.log(xhr.response);                                              // Récupération des informations dans la console
+        console.log(xhr.response);                                                  // Récupération des informations dans la console
 
-        for (i =0; i < xhr.response.length; i++){                               // Affichage des produits
+        for (i =0; i < xhr.response.length; i++){                                   // Affichage des produits
             if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                productID[productID.length] = new Array (xhr.response[i]._id);                     // Ajout de l'élément au tableau products  
+                productID[productID.length] = new Array (xhr.response[i]._id);      // Ajout de l'élément au tableau products  
                 console.log(productID);
                 Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
                 Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
@@ -119,11 +119,6 @@ function addElement (id,name,imageUrl,description,lense,qty,price){
 
     document.getElementById("ProductList").append(tr);
 }
-
-// productIDs
-// function addProdID (id){
-//    products[products.length] = id;
-//}
 
 // Mise à jour du prix
 function Total (price){
@@ -297,48 +292,42 @@ function f_valid(e){                                // Création de la fonction 
 
 function sendData (e){
     e.preventDefault();
-    
-    // Création de l'objet Contact (class)
-
+    // Création de l'objet Contact
     function createContact (firstName,lastName,address,city,mail){
-        this.firstName = firstName,
-        this.lastName = lastName,
-        this.address = address,
-        this.city = city,
-        this.email = mail
 
-        MakeContact(JSON.stringify(this)); // transformer le JSON en STRING
-
-        function MakeContact (data){
-            this.contact = data; 
+        let contact = {
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "address" : address,
+            "city" : city,
+            "email" : mail
         }
+
+        return contact;
     }
 
-    let contact = new createContact(nom.value,prenom.value,adresse.value,ville.value,email.value);
+    let contact = createContact(nom.value,prenom.value,adresse.value,ville.value,email.value);
 
-    // Création de l'Objet Tableau (class)
+    // Création de l'objet array
 
-    function createTable (productID){
-            this.products = productID;
+    let products = [];
+    for (let i = 0; i < productID.length; i++) {
+        products.push(productID[i][0]);
     }
 
-    for(let i=0; i < productID.length; i++){
-        products = new createTable (productID);
-    }
-
-    // Affichage des données dans la console
-    console.log(contact);
     console.log(products);
 
-    let order = {contact,products};
-    console.log( "Order :" +order);
+    let order = {
+        "contact" : contact,
+        "products" : products
+    };
     
     // Requête serveur AJAX
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
-    xhr.open("POST","http://localhost:3000/api/cameras/order", true);                         // On initialise notre requête avec open()
+    xhr.open("POST","http://localhost:3000/api/cameras/order", true);                   // On initialise notre requête avec open()
     xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
-    xhr.send(order);                                                                    // On envoie la requête
+    xhr.send(JSON.stringify(order));                                                    // On envoie la requête
 
     xhr.onerror = function(){
         alert("La requête à échoué");
@@ -353,7 +342,8 @@ function sendData (e){
         else{
             // Si le status HTTP est 201, on affiche la réponse
             console.log(xhr.response);                                                  // Récupération des informations dans la console
-            alert(xhr.response);
+            localStorage.setItem("POST-response",xhr.responseText);                     // Récupération des données dans LocalStorage
+            location.href="validate.html";
         }
     }
     
