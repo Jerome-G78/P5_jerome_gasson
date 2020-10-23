@@ -7,6 +7,11 @@ Lense = "";
 Qty = 0;
 DataParse ="";
 
+// Order in progress ...
+Validation = document.getElementById("Validation");
+Working = document.getElementById("Working");
+// Validation.style.visibility="hidden";
+
 // Requête serveur AJAX
 
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
@@ -126,3 +131,6 @@ let address = document.getElementById("address").innerHTML = localStorage.getIte
 let city = document.getElementById("city").innerHTML = localStorage.getItem("myCity");
 let email = document.getElementById("email").innerHTML = localStorage.getItem("myEmail");
 
+// Récupération des informations terminée
+Working.style.display="none";
+// Validation.style.visibility="show";
