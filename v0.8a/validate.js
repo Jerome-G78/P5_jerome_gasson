@@ -117,9 +117,12 @@ function Total (price){
 
 // JSON.pase (récupération des objets retourné par le serveur)
 Dataparse = JSON.parse(localStorage.getItem("POST-response"));
-console.log("START");
-console.log(Dataparse);
-console.log("END");
 
-// Affichage de l'order ID
+// Affichage de l'order ID & des informations de livraison
+let OrderID = document.getElementById("orderID").innerHTML = Dataparse.orderId;
+let firstName = document.getElementById("firstName").innerHTML = localStorage.getItem("myFirstName");
+let lastName = document.getElementById("lastName").innerHTML = localStorage.getItem("myLastName");
+let address = document.getElementById("address").innerHTML = localStorage.getItem("myAddress");
+let city = document.getElementById("city").innerHTML = localStorage.getItem("myCity");
+let email = document.getElementById("email").innerHTML = localStorage.getItem("myEmail");
 

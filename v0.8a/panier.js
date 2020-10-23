@@ -204,7 +204,7 @@ function f_valid(e){                                // Création de la fonction 
         else{                                           // préparation des données
             NF.textContent="";
             let myName = nom.value;
-            localStorage.setItem("myName",myName);
+            localStorage.setItem("myLastName",myName);
             console.log(nom.value + " - OK!");
         }
 
@@ -221,7 +221,7 @@ function f_valid(e){                                // Création de la fonction 
         else{
             PF.textContent="";
             let myFistName = prenom.value;
-            localStorage.setItem("myFisrtName",myFistName);
+            localStorage.setItem("myFirstName",myFistName);
             console.log(prenom.value + "- OK!");
         }
 
@@ -238,7 +238,7 @@ function f_valid(e){                                // Création de la fonction 
         else{
             AF.textContent="";
             let myAdress = adresse.value;
-            localStorage.setItem("myAdress",myAdress);
+            localStorage.setItem("myAddress",myAdress);
             console.log(adresse.value + " - OK!");
             
         }
