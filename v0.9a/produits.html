@@ -15,37 +15,39 @@
 		
     </head>
     
-	<body>
+	<body class="container">
 
 		<header id="Banner">
-			<a href="index.html" title="Retour vers l'accueil du site"><img src="images/Banner.png" alt="Bannière du site Orinoco"/></a>
+			<a href="index.html" title="Retour vers l'accueil du site"><img class="col-sm-12 col-md-12 col-lg-6" src="images/Banner.png" alt="Bannière du site Orinoco"/></a>
 			<h1>Votre site de vente en ligne thématique!</h1>
 		</header>
 		
 		<div class="Menu">
 			<nav>
 				<ul>
-					<li><a href="index.html" title="Accueil du site Orinoco"> Accueil </a></li>
-					<li><a href="produits.html" title="Produit"> Produit </a></li>
-					<li><a href="panier.html" title="Accès a votre panier"> Mon panier</a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="index.html" title="Accueil du site Orinoco"> Accueil </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="produits.html" title="Produit"> Produit </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="panier.html" title="Accès a votre panier"> Panier</a></li>
 				</ul>
 			</nav>
 		</div>
 
-		<table class="table table-image">
-			<caption>Produit</caption>
-			<thead class="thead-dark">
-				<tr class="text-center">
-					<th>Produit</th>
-					<th>Image</th>
-					<th>Descriptif</th>
-					<th>Lentille</th>
-					<th>Prix €</th>
-				</tr>
-			</thead>
-			<tbody id="ProductList">
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-image">
+				<caption>Produit</caption>
+				<thead class="thead-dark">
+					<tr class="text-center">
+						<th>Produit</th>
+						<th>Image</th>
+						<th>Descriptif</th>
+						<th>Lentille</th>
+						<th>Prix €</th>
+					</tr>
+				</thead>
+				<tbody id="ProductList">
+				</tbody>
+			</table>
+		</div>
 
 		<div class="row"> 
 			<div class="col text-center">
@@ -60,9 +62,12 @@
 		<!-- Javascript START-->
 		<script src="js/produits.js"></script>
 		
-		<!--jQuery ou Popper -->
+		<!-- BootStrap JS -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		<!--jQuery & Popper -->
 		<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-			
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<!-- Javascript END-->
 
 	</body>

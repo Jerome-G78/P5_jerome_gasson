@@ -78,30 +78,31 @@ function addElement (id,name,imageUrl,description,lense1,lense2,price){
     tr.setAttribute("class","Item");
 
     let td1 = document.createElement("td");
-    td1.setAttribute("class","name");
+    td1.setAttribute("class","name align-middle");
 
     td1.appendChild(document.createTextNode(name));
     tr.appendChild(td1);
 
     let td2 = document.createElement("td");
-    td2.setAttribute("class","imageUrl");
+    td2.setAttribute("class","imageUrl align-middle");
 
     let pict = document.createElement("img");
         pict.setAttribute("src",imageUrl);
         pict.setAttribute("width","256");
         pict.setAttribute("height","auto");
         pict.setAttribute("alt","Photo du produit");
+        pict.setAttribute("class","img-thumbnail");
     
     td2.appendChild(pict);
     tr.appendChild(td2);
     
     let td3 = document.createElement("td");
-    td3.setAttribute("class","description");
+    td3.setAttribute("class","description align-middle");
     td3.appendChild(document.createTextNode(description));
     tr.appendChild(td3);
 
     let td4 = document.createElement("td");
-    td4.setAttribute("class","lense");
+    td4.setAttribute("class","lense align-middle");
 
     let lenses = document.createElement("select");
         lenses.setAttribute("name","lenses");
@@ -124,7 +125,7 @@ function addElement (id,name,imageUrl,description,lense1,lense2,price){
     tr.appendChild(td4);
 
     let td5 = document.createElement("td");
-    td5.setAttribute("class","price");
+    td5.setAttribute("class","price align-middle");
 
     td5.appendChild(document.createTextNode(price));
     tr.appendChild(td5);
@@ -146,6 +147,7 @@ btn.addEventListener('click', function(){
 
     // addToCart(this);
     alert("Produit ajouté!");
+    btn.setAttribute("class","center btn btn-primary disabled");
 });
 
 // btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));

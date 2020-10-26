@@ -68,40 +68,43 @@ function addElement (id,name,imageUrl,description,price){
     tr.setAttribute("class","Item");
 
     let td1 = document.createElement("td");
+    td1.setAttribute("class","align-middle");
     
     let link = document.createElement("a");
     link.setAttribute("href","produits.html");
 
-    link.appendChild(document.createTextNode(id));
+    link.appendChild(document.createTextNode("Détail..."));
     td1.appendChild(link);
     tr.appendChild(td1);
 
     let td2 = document.createElement("td");
-    td2.setAttribute("class","name");
+    td2.setAttribute("class","name align-middle");
 
     td2.appendChild(document.createTextNode(name));
     tr.appendChild(td2);
 
     let td3 = document.createElement("td");
     td3.setAttribute("class","imageUrl");
+    td3.setAttribute("class","align-middle");
 
     let pict = document.createElement("img");
         pict.setAttribute("src",imageUrl);
         pict.setAttribute("width","256");
         pict.setAttribute("height","auto");
         pict.setAttribute("alt","Photo du produit");
+        pict.setAttribute("class","img-thumbnail");
 
     td3.appendChild(pict);
     tr.appendChild(td3);
 
     let td4 = document.createElement("td");
-    td4.setAttribute("class","description");
+    td4.setAttribute("class","description align-middle");
 
     td4.appendChild(document.createTextNode(description));
     tr.appendChild(td4);
 
     let td5 = document.createElement("td");
-    td5.setAttribute("class","price");
+    td5.setAttribute("class","price align-middle");
 
     td5.appendChild(document.createTextNode(price));
     tr.appendChild(td5);
