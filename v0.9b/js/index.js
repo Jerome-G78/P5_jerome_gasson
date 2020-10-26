@@ -1,16 +1,65 @@
 /* Fichier JavaScript */
 
+// On crée l'objet XMLHttpRequest()
+let xhr = new XMLHttpRequest();
+
 // Variables globales
 let CAM="";
 let ID="";
 
 // Requête serveur AJAX
-
+/*
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
 xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
 xhr.responseType = "json";                              // On veut une réponse au format JSON
 xhr.send();                                             // On envoie la requête
+*/
 
+// Promesse
+function Load(xhr){
+    return new Promise ((resolve, reject) => {
+
+        // On initialise notre requête avec open()
+        xhr.open("GET","http://localhost:3000/api/cameras");
+
+        // On veut une réponse au format JSON
+        xhr.responseType = "json";   
+        
+        // On envoie la requête
+        xhr.send();                                             
+        
+        xhr.onload = () => resolve(xhr.status);
+        xhr.onerror = () => reject(xhr.status);
+    })
+}
+
+Load(xhr).then(() => {
+    // Si le status HTTP est 200, on affiche la réponse
+
+    // Récupération des informations dans la console
+    console.log(xhr.response);                  
+
+    // Boucle for pour créer la liste des produits
+    for (i =0; i < xhr.response.length; i++){
+        CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
+        addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
+    }
+
+    // Récupération de l'ID produit dans le localStorage
+    let Item = document.getElementsByClassName("Item");
+    console.log(Item);
+
+    // La variable element récupère l'index actuel HTMLCollection de Item
+    for (let element of Item){
+        element.addEventListener('click', event => {
+            localStorage.setItem("ID",element.id);
+        })
+    }
+}).catch((xhr) =>{
+    alert("La requête à échoué");
+})
+
+/*
 // Si la requête n'as pas pu aboutir ...
 xhr.onerror = function(){
     alert("La requête à échoué");
@@ -37,8 +86,8 @@ xhr.onload = function(){
 
         for (let element of Item){     // La variable element récupère l'index actuel HTMLCollection de Item
             element.addEventListener('click', event => {
-                console.log("OK");
-                // event.preventDefault();
+                // console.log("OK"); // DEBUG
+                // event.preventDefault(); // DEBUG
                 localStorage.setItem("ID",element.id);
                 Details(this);
             })
@@ -46,6 +95,7 @@ xhr.onload = function(){
 
     }
 };
+*/
 
 // Fonction de création d'un produit
 
@@ -110,12 +160,4 @@ function addElement (id,name,imageUrl,description,price){
     tr.appendChild(td5);
 
     document.getElementById("ProductList").append(tr);
-}
-
-//Se rendre sur la page d'un produit
-
-function Details (Item) {
-   // localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
-   // console.log(localStorage.getItem("ID"));
-   console.log(Item);
 }

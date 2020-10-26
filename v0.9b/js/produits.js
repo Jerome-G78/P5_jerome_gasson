@@ -1,5 +1,8 @@
 /* Fichier JavaScript */
 
+// On crée l'objet XMLHttpRequest()
+let xhr = new XMLHttpRequest();
+
 // Variables globales
 let CAM="";
 let Lense="";
@@ -7,12 +10,58 @@ let Qty=localStorage.setItem("qty",0);  // Initialiser une quantité
 let ID=localStorage.getItem("ID");      // Fixer la variable à l'élément séléctionnée
 
 // Requête serveur AJAX
-
+/*
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
 xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
 xhr.responseType = "json";                              // On veut une réponse au format JSON
 xhr.send();                                             // On envoie la requête
+*/
 
+// Promesse
+function Load(xhr){
+    return new Promise ((resolve, reject) => {
+        xhr.open("GET","http://localhost:3000/api/cameras");
+        xhr.responseType = "json";
+        xhr.send();
+        
+        xhr.onload = () => resolve(xhr.status);
+        xhr.onerror = () => reject(xhr.status);
+    })
+}
+
+Load(xhr).then(() => {
+    // Si le status HTTP est 200, on affiche la réponse
+    // Récupération des informations dans la console
+    console.log(xhr.response);
+
+    // Affichage du produit séléctionnée
+    for (i =0; i < xhr.response.length; i++){   
+        if (xhr.response[i]._id == ID){
+        CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
+        addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);
+        }
+    }
+
+    // Personalisation
+    let lense = document.getElementsByClassName("lenses");
+    console.log(lense);
+
+    for (let element of lense){
+        element.addEventListener("click", event => {
+        console.log("OK");
+        // event.preventDefault();
+        Lense = element.value;
+        localStorage.setItem("lense",element.value);
+        })
+
+        Lense = element.value;
+        localStorage.setItem("lense",element.value);
+    }
+
+}).catch((xhr) =>{
+    alert("La requête à échoué");
+})
+/*
 // Si la requête n'as pas pu aboutir ...
 xhr.onerror = function(){
     alert("La requête à échoué");
@@ -54,6 +103,7 @@ xhr.onload = function(){
 
     }
 };
+*/
 
 // Fonction de création d'un produit
 

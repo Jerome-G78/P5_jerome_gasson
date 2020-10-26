@@ -1,5 +1,8 @@
 /* Fichier JavaScript */
 
+// On crée l'objet XMLHttpRequest()
+let xhr = new XMLHttpRequest();
+
 // Variables
 ID="";
 productID=[];
@@ -13,12 +16,49 @@ Working = document.getElementById("Working");
 // Validation.style.visibility="hidden";
 
 // Requête serveur AJAX
-
+/*
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
 xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
 xhr.responseType = "json";                              // On veut une réponse au format JSON
 xhr.send();                                             // On envoie la requête
+*/
 
+// Promesse
+function Load(xhr){
+    return new Promise ((resolve, reject) => {
+        xhr.open("GET","http://localhost:3000/api/cameras");
+        xhr.responseType = "json";
+        xhr.send();
+        
+        xhr.onload = () => resolve(xhr.status);
+        xhr.onerror = () => reject(xhr.status);
+    })
+}
+
+Load(xhr).then(() => {
+    // Si le status HTTP est 200, on affiche la réponse
+    console.log(xhr.response);
+
+    // Affichage des produits
+    for (i =0; i < xhr.response.length; i++){
+        if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
+            // Ajout de l'élément au tableau products  
+            productID[productID.length] = new Array (xhr.response[i]._id);
+            console.log(productID);
+            Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
+            Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
+
+            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
+            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
+            Total(CAM.price);
+        }
+
+    }
+
+}).catch((xhr) =>{
+    alert("La requête à échoué");
+})
+/*
 // Si la requête n'as pas pu aboutir ...
 xhr.onerror = function(){
     alert("La requête à échoué");
@@ -50,6 +90,7 @@ xhr.onload = function(){
     
     };
 }
+*/
 
 // Fonction de création d'un produit
 function CreateItem (ID,name,imageUrl,description,lense,price){

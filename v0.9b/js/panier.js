@@ -1,18 +1,74 @@
 /* Fichier JavaScript */
 
+// On crée l'objet XMLHttpRequest()
+let xhr = new XMLHttpRequest();
+
 // Variables
 ID="";
 productID=[];
 Lense = "";
 Qty = 0;
+order="";
 
 // Requête serveur AJAX
 
+/*
 let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
 xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
 xhr.responseType = "json";                              // On veut une réponse au format JSON
 xhr.send();                                             // On envoie la requête
+*/
 
+// Promesse
+function Load(xhr){
+    return new Promise ((resolve, reject) => {
+        xhr.open("GET","http://localhost:3000/api/cameras");
+        xhr.responseType = "json";
+        xhr.send();
+        
+        xhr.onload = () => resolve(xhr.status);
+        xhr.onerror = () => reject(xhr.status);
+    })
+}
+
+Load(xhr).then(() => {
+    // Si le status HTTP est 200, on affiche la réponse
+
+    // Récupération des informations dans la console
+    console.log(xhr.response);
+    
+    // Affichage des produits
+
+    for (i =0; i < xhr.response.length; i++){                                   
+        if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
+            // Ajout de l'élément au tableau products  
+            productID[productID.length] = new Array (xhr.response[i]._id);
+            console.log(productID);
+            Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
+            Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
+
+            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
+            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
+            Total(CAM.price);
+        }
+
+    }
+
+    if(Cart.innerHTML != "0"){
+        hideElement();
+    
+        // masquer l'élément
+        function hideElement(){
+            let emptyCart = document.getElementById("emptyCart");
+            console.log(emptyCart);
+            emptyCart.style.display="none";
+        }
+    }
+}).catch((xhr) =>{
+    alert("La requête à échoué");
+})
+
+/*
 // Si la requête n'as pas pu aboutir ...
 xhr.onerror = function(){
     alert("La requête à échoué");
@@ -55,6 +111,7 @@ xhr.onload = function(){
     
     };
 }
+*/
 
 // Fonction de création d'un produit
 function CreateItem (ID,name,imageUrl,description,lense,price){
@@ -206,7 +263,6 @@ function f_valid(e){                                // Création de la fonction 
             NF.textContent="";
             let myName = nom.value;
             localStorage.setItem("myLastName",myName);
-            console.log(nom.value + " - OK!");
         }
 
         if (prenom.validity.valueMissing) {
@@ -223,7 +279,6 @@ function f_valid(e){                                // Création de la fonction 
             PF.textContent="";
             let myFistName = prenom.value;
             localStorage.setItem("myFirstName",myFistName);
-            console.log(prenom.value + "- OK!");
         }
 
         if (adresse.validity.valueMissing) {
@@ -240,7 +295,6 @@ function f_valid(e){                                // Création de la fonction 
             AF.textContent="";
             let myAdress = adresse.value;
             localStorage.setItem("myAddress",myAdress);
-            console.log(adresse.value + " - OK!");
             
         }
 
@@ -258,7 +312,6 @@ function f_valid(e){                                // Création de la fonction 
             VF.textContent="";
             let myCity = ville.value;
             localStorage.setItem("myCity",myCity);
-            console.log(ville.value + " - OK!");
         }
 
         if (email.validity.valueMissing) {
@@ -275,7 +328,6 @@ function f_valid(e){                                // Création de la fonction 
             EF.textContent="";
             let myEmail = email.value;
             localStorage.setItem("myEmail",myEmail);
-            console.log(email.value + " - OK!");
         }
 
         if(nom.value != "" && prenom.value != "" && adresse.value != "" && ville.value != "" && email.value != ""){
@@ -318,12 +370,40 @@ function sendData (e){
 
     console.log(products);
 
-    let order = {
+    order = {
         "contact" : contact,
         "products" : products
     };
     
-    // Requête serveur AJAX
+    // Requête serveur AJAX (POST)
+    
+    /*
+    // Promesse
+    function Send(xhr){
+        return new Promise ((resolve, reject) => {
+            // On initialise notre requête avec open()
+            xhr.open("POST","http://localhost:3000/api/cameras/order", true);
+            // Option requise pour la methode POST envoie JSON
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.send(JSON.stringify(order));
+            
+            xhr.onload = () => resolve(xhr.status);
+            xhr.onerror = () => reject(xhr.status);
+        })
+    }
+
+    Send(xhr).then(() => {
+        // Si le status HTTP est 201, on affiche la réponse
+        console.log(xhr.status);
+        console.log(xhr.response);
+        // Récupération des données dans LocalStorage
+        localStorage.setItem("POST-response",xhr.responseText);
+        location.href="validate.html";
+
+    }).catch((xhr) =>{
+        alert("La requête à échoué");
+    })
+    */
 
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order", true);                   // On initialise notre requête avec open()
