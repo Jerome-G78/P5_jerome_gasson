@@ -7,13 +7,7 @@ let xhr = new XMLHttpRequest();
 let CAM="";
 let ID="";
 
-// Requête serveur AJAX
-/*
-let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
-xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
-xhr.responseType = "json";                              // On veut une réponse au format JSON
-xhr.send();                                             // On envoie la requête
-*/
+// Requête serveur AJAX (GET)
 
 // Promesse
 function Load(xhr){
@@ -34,10 +28,7 @@ function Load(xhr){
 }
 
 Load(xhr).then(() => {
-    // Si le status HTTP est 200, on affiche la réponse
-
-    // Récupération des informations dans la console
-    console.log(xhr.response);                  
+    // Si le status HTTP est 200                 
 
     // Boucle for pour créer la liste des produits
     for (i =0; i < xhr.response.length; i++){
@@ -47,7 +38,6 @@ Load(xhr).then(() => {
 
     // Récupération de l'ID produit dans le localStorage
     let Item = document.getElementsByClassName("Item");
-    console.log(Item);
 
     // La variable element récupère l'index actuel HTMLCollection de Item
     for (let element of Item){
@@ -55,47 +45,10 @@ Load(xhr).then(() => {
             localStorage.setItem("ID",element.id);
         })
     }
-}).catch((xhr) =>{
-    alert("La requête à échoué");
+
+}).catch((e) =>{
+    alert("La requête à échoué : "+ e);
 })
-
-/*
-// Si la requête n'as pas pu aboutir ...
-xhr.onerror = function(){
-    alert("La requête à échoué");
-};
-
-xhr.onload = function(){
-    // Si le status HTTP n'est pas 200
-    if (xhr.status != 200){
-        // On affiche le status et le message correspondant
-        alert("Erreur " + xhr.status + " : " + xhr.statusText);
-    }
-    else{
-        // Si le status HTTP est 200, on affiche la réponse
-        console.log(xhr.response);              // Récupération des informations dans la console
-
-        for (i =0; i < xhr.response.length; i++){   // Boucle for pour créer la liste des produits
-            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
-            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
-        }
-
-        // Récupération de l'ID produit dans le localStorage
-        let Item = document.getElementsByClassName("Item");
-        console.log(Item);
-
-        for (let element of Item){     // La variable element récupère l'index actuel HTMLCollection de Item
-            element.addEventListener('click', event => {
-                // console.log("OK"); // DEBUG
-                // event.preventDefault(); // DEBUG
-                localStorage.setItem("ID",element.id);
-                Details(this);
-            })
-        }
-
-    }
-};
-*/
 
 // Fonction de création d'un produit
 
@@ -105,8 +58,6 @@ function CreateItem (ID,name,imageUrl,description,price){
     this.imageUrl = imageUrl,
     this.description = description,
     this.price = price
-
-//  alert(this._id +" \n "+ this.name +" \n "+ this.imageUrl +" \n "+ this.description +" \n "+ this.price); // DEBUG
 }
 
 // Ajout du produit au tableau 

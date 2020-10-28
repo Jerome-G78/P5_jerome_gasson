@@ -123,17 +123,7 @@ table, th, td, tr
 }
 
 /* Autres */
-caption
+caption, #clean, #AddCart
 {
     display: none;
-}
-
-#clean
-{
-    visibility: hidden;
-}
-
-#AddCart
-{
-    visibility: hidden;
 }

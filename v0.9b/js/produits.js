@@ -6,16 +6,14 @@ let xhr = new XMLHttpRequest();
 // Variables globales
 let CAM="";
 let Lense="";
-let Qty=localStorage.setItem("qty",0);  // Initialiser une quantité
-let ID=localStorage.getItem("ID");      // Fixer la variable à l'élément séléctionnée
 
-// Requête serveur AJAX
-/*
-let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
-xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
-xhr.responseType = "json";                              // On veut une réponse au format JSON
-xhr.send();                                             // On envoie la requête
-*/
+// Initialiser une quantité
+let Qty=localStorage.setItem("qty",0);
+
+// Fixer la variable à l'élément séléctionnée
+let ID=localStorage.getItem("ID");
+
+// Requête serveur AJAX (GET)
 
 // Promesse
 function Load(xhr){
@@ -31,13 +29,11 @@ function Load(xhr){
 
 Load(xhr).then(() => {
     // Si le status HTTP est 200, on affiche la réponse
-    // Récupération des informations dans la console
-    console.log(xhr.response);
 
     // Affichage du produit séléctionnée
     for (i =0; i < xhr.response.length; i++){   
         if (xhr.response[i]._id == ID){
-        document.getElementById("AddCart").style.visibility="visible";
+        document.getElementById("AddCart").style.display="inline-block";
         CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
         addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);
         }
@@ -45,12 +41,9 @@ Load(xhr).then(() => {
 
     // Personalisation
     let lense = document.getElementsByClassName("lenses");
-    console.log(lense);
 
     for (let element of lense){
         element.addEventListener("click", event => {
-        console.log("OK");
-        // event.preventDefault();
         Lense = element.value;
         localStorage.setItem("lense",element.value);
         })
@@ -59,52 +52,9 @@ Load(xhr).then(() => {
         localStorage.setItem("lense",element.value);
     }
 
-}).catch((xhr) =>{
-    alert("La requête à échoué");
-})
-/*
-// Si la requête n'as pas pu aboutir ...
-xhr.onerror = function(){
-    alert("La requête à échoué");
-};
-
-xhr.onload = function(){
-    // Si le status HTTP n'est pas 200
-    if (xhr.status != 200){
-        // On affiche le status et le message correspondant
-        alert("Erreur " + xhr.status + " : " + xhr.statusText);
-    }
-    else{
-        // Si le status HTTP est 200, on affiche la réponse
-        console.log(xhr.response);              // Récupération des informations dans la console
-
-        for (i =0; i < xhr.response.length; i++){   // Affichage du produit séléctionnée
-            if (xhr.response[i]._id == ID){
-            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
-            addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);
-            }
-        }
-
-        // Personalisation
-
-        let lense = document.getElementsByClassName("lenses");
-        console.log(lense);
-
-        for (let element of lense){
-            element.addEventListener("click", event => {
-            console.log("OK");
-            // event.preventDefault();
-            Lense = element.value;
-            localStorage.setItem("lense",element.value);
-            })
-
-            Lense = element.value;
-            localStorage.setItem("lense",element.value);
-        }
-
-    }
-};
-*/
+    }).catch((e) =>{
+        alert("La requête à échoué : " + e);
+    })
 
 // Fonction de création d'un produit
 
@@ -116,8 +66,6 @@ function CreateItem (ID,name,imageUrl,description,lense1,lense2,price){
     this.lense1 = lense1,
     this.lense2 = lense2,
     this.price = price
-
-//  alert(this._id +" \n "+ this.name +" \n "+ this.imageUrl +" \n "+ this.description +" \n "+ this.lense1 + " \n " + this.lense2 +" \n "+ this.price); // DEBUG
 }
 
 // Ajout du produit au tableau 
@@ -196,11 +144,8 @@ btn.addEventListener('click', function(){
     localStorage.setItem(id+"-Cart-lense", lense);
     localStorage.setItem(id+"-Cart-ID", id);
 
-    // addToCart(this);
     alert("Produit ajouté!");
 });
-
-// btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));
 
 function addToCart (id,name,imageUrl,description,lense,price){
     this.name = name,
@@ -214,7 +159,4 @@ function addToCart (id,name,imageUrl,description,lense,price){
     localStorage.setItem(id+"-Cart-description", this.description);
     localStorage.setItem(id+"-Cart-lense",this.lense);
     localStorage.setItem(id+"-Cart-price", this.price);
-
-    console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.lense +" - " + this.price);
-    // alert("Produit ajouté!");
 }

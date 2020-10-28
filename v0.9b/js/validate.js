@@ -13,15 +13,9 @@ DataParse ="";
 // Order in progress ...
 Validation = document.getElementById("Validation");
 Working = document.getElementById("Working");
-Validation.style.visibility="hidden";
+Validation.style.display="none";
 
-// Requête serveur AJAX
-/*
-let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
-xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
-xhr.responseType = "json";                              // On veut une réponse au format JSON
-xhr.send();                                             // On envoie la requête
-*/
+// Requête serveur AJAX (GET)
 
 // Promesse
 function Load(xhr){
@@ -37,14 +31,12 @@ function Load(xhr){
 
 Load(xhr).then(() => {
     // Si le status HTTP est 200, on affiche la réponse
-    console.log(xhr.response);
 
     // Affichage des produits
     for (i =0; i < xhr.response.length; i++){
         if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
             // Ajout de l'élément au tableau products  
             productID[productID.length] = new Array (xhr.response[i]._id);
-            console.log(productID);
             Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
             Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
 
@@ -52,45 +44,11 @@ Load(xhr).then(() => {
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
             Total(CAM.price);
         }
-
     }
 
-}).catch((xhr) =>{
-    alert("La requête à échoué");
+}).catch((e) =>{
+    alert("La requête à échoué : " + e);
 })
-/*
-// Si la requête n'as pas pu aboutir ...
-xhr.onerror = function(){
-    alert("La requête à échoué");
-};
-
-xhr.onload = function(){
-    // Si le status HTTP n'est pas 200
-    if (xhr.status != 200){
-        // On affiche le status et le message correspondant
-        alert("Erreur " + xhr.status + " : " + xhr.statusText); 
-    }
-    else{
-        // Si le status HTTP est 200, on affiche la réponse
-        console.log(xhr.response);                                                  // Récupération des informations dans la console
-
-        for (i =0; i < xhr.response.length; i++){                                   // Affichage des produits
-            if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                productID[productID.length] = new Array (xhr.response[i]._id);      // Ajout de l'élément au tableau products  
-                console.log(productID);
-                Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
-                Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
-
-                CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
-                addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
-                Total(CAM.price);
-            }
-
-        }
-    
-    };
-}
-*/
 
 // Fonction de création d'un produit
 function CreateItem (ID,name,imageUrl,description,lense,price){
@@ -175,4 +133,4 @@ let email = document.getElementById("email").innerHTML = localStorage.getItem("m
 
 // Récupération des informations terminée
 Working.style.display="none";
-Validation.style.visibility="visible";
+Validation.style.display="block";

@@ -12,13 +12,6 @@ order="";
 
 // Requête serveur AJAX
 
-/*
-let xhr = new XMLHttpRequest();                         // On crée l'objet XMLHttpRequest()
-xhr.open("GET","http://localhost:3000/api/cameras");    // On initialise notre requête avec open()
-xhr.responseType = "json";                              // On veut une réponse au format JSON
-xhr.send();                                             // On envoie la requête
-*/
-
 // Promesse
 function Load(xhr){
     return new Promise ((resolve, reject) => {
@@ -33,9 +26,6 @@ function Load(xhr){
 
 Load(xhr).then(() => {
     // Si le status HTTP est 200, on affiche la réponse
-
-    // Récupération des informations dans la console
-    console.log(xhr.response);
     
     // Affichage des produits
 
@@ -43,7 +33,6 @@ Load(xhr).then(() => {
         if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
             // Ajout de l'élément au tableau products  
             productID[productID.length] = new Array (xhr.response[i]._id);
-            console.log(productID);
             Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
             Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
 
@@ -55,70 +44,18 @@ Load(xhr).then(() => {
     }
 
     if(Cart.innerHTML != "0"){
-        hideEmpty();
-        ShowCleanCart();
     
         // masquer l'élément
-        function hideEmpty(){
-            let emptyCart = document.getElementById("emptyCart");
+        let emptyCart = document.getElementById("emptyCart");
             emptyCart.style.display="none";
-        }
-
-        // Afficher l'élément
-        function ShowCleanCart(){
-            let cleanCart = document.getElementById("clean");
-            cleanCart.style.visibility="visible";
-        }
-
-    } 
-}).catch((xhr) =>{
-    alert("La requête à échoué");
-})
-
-/*
-// Si la requête n'as pas pu aboutir ...
-xhr.onerror = function(){
-    alert("La requête à échoué");
-};
-
-xhr.onload = function(){
-    // Si le status HTTP n'est pas 200
-    if (xhr.status != 200){
-        // On affiche le status et le message correspondant
-        alert("Erreur " + xhr.status + " : " + xhr.statusText); 
-    }
-    else{
-        // Si le status HTTP est 200, on affiche la réponse
-        console.log(xhr.response);                                                  // Récupération des informations dans la console
-
-        for (i =0; i < xhr.response.length; i++){                                   // Affichage des produits
-            if (localStorage.getItem(xhr.response[i]._id+"-Cart-qty") !=null){
-                productID[productID.length] = new Array (xhr.response[i]._id);      // Ajout de l'élément au tableau products  
-                console.log(productID);
-                Lense = localStorage.getItem(xhr.response[i]._id+"-Cart-lense");
-                Qty = localStorage.getItem(xhr.response[i]._id+"-Cart-qty");
-
-                CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,Lense,xhr.response[i].price);
-                addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,Qty,CAM.price);
-                Total(CAM.price);
-            }
-
-        }
-
-        if(Cart.innerHTML != "0"){
-            hideElement();
         
-            // masquer l'élément
-            function hideElement(){
-                let emptyCart = document.getElementById("emptyCart");
-                console.log(emptyCart);
-                emptyCart.style.display="none";
-            }
-        }
-    
-    };
-}
-*/
+        // Afficher l'élément
+        let cleanCart = document.getElementById("clean");
+            cleanCart.style.display="inline-block";
+    } 
+}).catch((e) =>{
+    alert("La requête à échoué : " + e);
+})
 
 // Fonction de création d'un produit
 function CreateItem (ID,name,imageUrl,description,lense,price){
@@ -128,8 +65,6 @@ function CreateItem (ID,name,imageUrl,description,lense,price){
     this.description = description,
     this.lense = lense,
     this.price = price
-
-//  alert(this._id +" \n "+ this.name +" \n "+ this.imageUrl +" \n "+ this.description +" \n "+ this.lense1 + " \n " + this.lense2 +" \n "+ this.price); // DEBUG
 }
 
 // Ajout du produit au tableau 
@@ -251,14 +186,14 @@ validation.addEventListener('click',f_valid);
 
 
 // Valider la commande
-function f_valid(e){                                // Création de la fonction associé
+function f_valid(e){
     if(Cart.innerHTML != "0"){
 
         // Verification des données
 
         if (nom.validity.valueMissing) {
-            e.preventDefault();                         // blocage de l'envoie du formulaire
-            NF.textContent = "Nom manquant";            // Affichage d'un message d'erreur
+            e.preventDefault();
+            NF.textContent = "Nom manquant";
             NF.style.color = "#5e0000";
         }
         else if(npv.test(nom.value) == false) {
@@ -266,7 +201,7 @@ function f_valid(e){                                // Création de la fonction 
             NF.textContent = "Format incorrect";
             NF.style.color = "orange";
         }
-        else{                                           // préparation des données
+        else{
             NF.textContent="";
             let myName = nom.value;
             localStorage.setItem("myLastName",myName);
@@ -302,7 +237,6 @@ function f_valid(e){                                // Création de la fonction 
             AF.textContent="";
             let myAdress = adresse.value;
             localStorage.setItem("myAddress",myAdress);
-            
         }
 
         if (ville.validity.valueMissing) {
@@ -347,7 +281,6 @@ function f_valid(e){                                // Création de la fonction 
     {
         alert("Votre panier est vide!");
     }
-
 }
 
 function sendData (e){
@@ -383,7 +316,6 @@ function sendData (e){
     };
     
     // Requête serveur AJAX (POST)
-    
     /*
     // Promesse
     function Send(xhr){
@@ -407,11 +339,9 @@ function sendData (e){
         localStorage.setItem("POST-response",xhr.responseText);
         location.href="validate.html";
 
-    }).catch((xhr) =>{
-        alert("La requête à échoué");
     })
     */
-
+    
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order", true);                   // On initialise notre requête avec open()
     xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
@@ -434,5 +364,4 @@ function sendData (e){
             location.href="validate.html";
         }
     }
-    
-}
+} 
