@@ -331,7 +331,7 @@ function sendData (e){
     Send(xhr).then(() => {
         // Si le status HTTP est 201
         // Récupération de orderID LocalStorage
-        localStorage.setItem("orderID", xhr.response.orderId); // xhr.responseText
+        localStorage.setItem("orderID", xhr.response.orderId);
         location.href="validate.html";
     })
 } 
