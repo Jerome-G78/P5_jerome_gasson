@@ -70,7 +70,7 @@ Load(xhr).then(() => {
             cleanCart.style.visibility="visible";
         }
 
-    }
+    } 
 }).catch((xhr) =>{
     alert("La requête à échoué");
 })
