@@ -112,14 +112,6 @@ table, th, td, tr
 }
 
 /* Validation */
-/*#Validation
-{
-/*  margin: 2em 3em;
-    padding: 1em 1em;
-    border-radius:0.43em;
-    background-color: #905bfd;
-    box-shadow:0 0 0.5em #d8852e; /* DebuG*/
-/*}*/
 
 #Working
 {
@@ -134,4 +126,14 @@ table, th, td, tr
 caption
 {
     display: none;
+}
+
+#clean
+{
+    visibility: hidden;
+}
+
+#AddCart
+{
+    visibility: hidden;
 }

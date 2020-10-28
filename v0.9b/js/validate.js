@@ -13,7 +13,7 @@ DataParse ="";
 // Order in progress ...
 Validation = document.getElementById("Validation");
 Working = document.getElementById("Working");
-// Validation.style.visibility="hidden";
+Validation.style.visibility="hidden";
 
 // Requête serveur AJAX
 /*
@@ -175,4 +175,4 @@ let email = document.getElementById("email").innerHTML = localStorage.getItem("m
 
 // Récupération des informations terminée
 Working.style.display="none";
-// Validation.style.visibility="show";
+Validation.style.visibility="visible";

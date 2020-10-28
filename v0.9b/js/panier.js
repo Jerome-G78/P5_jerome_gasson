@@ -55,14 +55,21 @@ Load(xhr).then(() => {
     }
 
     if(Cart.innerHTML != "0"){
-        hideElement();
+        hideEmpty();
+        ShowCleanCart();
     
         // masquer l'élément
-        function hideElement(){
+        function hideEmpty(){
             let emptyCart = document.getElementById("emptyCart");
-            console.log(emptyCart);
             emptyCart.style.display="none";
         }
+
+        // Afficher l'élément
+        function ShowCleanCart(){
+            let cleanCart = document.getElementById("clean");
+            cleanCart.style.visibility="visible";
+        }
+
     }
 }).catch((xhr) =>{
     alert("La requête à échoué");

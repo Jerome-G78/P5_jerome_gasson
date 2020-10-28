@@ -37,6 +37,7 @@ Load(xhr).then(() => {
     // Affichage du produit séléctionnée
     for (i =0; i < xhr.response.length; i++){   
         if (xhr.response[i]._id == ID){
+        document.getElementById("AddCart").style.visibility="visible";
         CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
         addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],CAM.price);
         }
@@ -197,7 +198,6 @@ btn.addEventListener('click', function(){
 
     // addToCart(this);
     alert("Produit ajouté!");
-    btn.setAttribute("class","center btn btn-primary disabled");
 });
 
 // btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));
