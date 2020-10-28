@@ -308,8 +308,6 @@ function sendData (e){
         products.push(productID[i][0]);
     }
 
-    console.log(products);
-
     order = {
         "contact" : contact,
         "products" : products
@@ -320,7 +318,6 @@ function sendData (e){
     // Promesse
     function Send(xhr){
         return new Promise ((resolve, reject) => {
-            // On initialise notre requête avec open()
             xhr.open("POST","http://localhost:3000/api/cameras/order", true);
             // Option requise pour la methode POST envoie JSON
             xhr.setRequestHeader("Content-Type","application/json");
@@ -332,37 +329,9 @@ function sendData (e){
     }
 
     Send(xhr).then(() => {
-        // Si le status HTTP est 201, on affiche la réponse
-        console.log(xhr.status);
-        console.log(xhr.response);
-        // Récupération des données dans LocalStorage
-        localStorage.setItem("POST-response",xhr.responseText);
+        // Si le status HTTP est 201
+        // Récupération de orderID LocalStorage
+        localStorage.setItem("orderID", xhr.response.orderId); // xhr.responseText
         location.href="validate.html";
-
     })
-    
-    /*
-    let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
-    xhr.open("POST","http://localhost:3000/api/cameras/order", true);                   // On initialise notre requête avec open()
-    xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
-    xhr.send(JSON.stringify(order));                                                    // On envoie la requête
-
-    xhr.onerror = function(){
-        alert("La requête à échoué");
-    };
-
-    xhr.onload = function(){
-        // Si le status HTTP n'est pas 201
-        if (xhr.status != 201){
-            // On affiche le status et le message correspondant
-            alert("Erreur " + xhr.status + " : " + xhr.statusText);
-        }
-        else{
-            // Si le status HTTP est 201, on affiche la réponse
-            console.log(xhr.response);                                                  // Récupération des informations dans la console
-            localStorage.setItem("POST-response",xhr.responseText);                     // Récupération des données dans LocalStorage
-            location.href="validate.html";
-        }
-    }
-    */
 } 
