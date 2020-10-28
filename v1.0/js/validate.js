@@ -8,7 +8,6 @@ ID="";
 productID=[];
 Lense = "";
 Qty = 0;
-DataParse ="";
 
 // Order in progress ...
 Validation = document.getElementById("Validation");

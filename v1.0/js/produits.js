@@ -146,17 +146,3 @@ btn.addEventListener('click', function(){
 
     document.getElementById("OnSucess").innerHTML="Produit ajouté!";
 });
-
-function addToCart (id,name,imageUrl,description,lense,price){
-    this.name = name,
-    this.imageUrl = imageUrl,
-    this.description = description,
-    this.lense = lense,
-    this.price = price
-
-    localStorage.setItem(id+"-Cart-name", this.name);
-    localStorage.setItem(id+"-Cart-imageUrl", this.imageUrl);
-    localStorage.setItem(id+"-Cart-description", this.description);
-    localStorage.setItem(id+"-Cart-lense",this.lense);
-    localStorage.setItem(id+"-Cart-price", this.price);
-}
