@@ -47,7 +47,7 @@ Load(xhr).then(() => {
     }
 
 }).catch((e) =>{
-    alert("La requête à échoué : "+ e);
+    document.getElementById("OnError").innerHTML="La requête à échoué : " + e;
 })
 
 // Fonction de création d'un produit

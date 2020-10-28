@@ -53,7 +53,7 @@ Load(xhr).then(() => {
     }
 
     }).catch((e) =>{
-        alert("La requête à échoué : " + e);
+        document.getElementById("OnError").innerHTML="La requête à échoué : " + e;
     })
 
 // Fonction de création d'un produit
@@ -144,7 +144,7 @@ btn.addEventListener('click', function(){
     localStorage.setItem(id+"-Cart-lense", lense);
     localStorage.setItem(id+"-Cart-ID", id);
 
-    alert("Produit ajouté!");
+    document.getElementById("OnSucess").innerHTML="Produit ajouté!";
 });
 
 function addToCart (id,name,imageUrl,description,lense,price){

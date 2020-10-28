@@ -54,7 +54,7 @@ Load(xhr).then(() => {
             cleanCart.style.display="inline-block";
     } 
 }).catch((e) =>{
-    alert("La requête à échoué : " + e);
+    document.getElementById("OnError").innerHTML="La requête à échoué : " + e;
 })
 
 // Fonction de création d'un produit
@@ -279,7 +279,7 @@ function f_valid(e){
     }
     else
     {
-        alert("Votre panier est vide!");
+        document.getElementById("OnError").innerHTML="Votre panier est vide!";
     }
 }
 
