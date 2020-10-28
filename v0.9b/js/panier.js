@@ -259,7 +259,7 @@ function f_valid(e){                                // Création de la fonction 
         if (nom.validity.valueMissing) {
             e.preventDefault();                         // blocage de l'envoie du formulaire
             NF.textContent = "Nom manquant";            // Affichage d'un message d'erreur
-            NF.style.color = "red";
+            NF.style.color = "#5e0000";
         }
         else if(npv.test(nom.value) == false) {
             e.preventDefault();
@@ -275,7 +275,7 @@ function f_valid(e){                                // Création de la fonction 
         if (prenom.validity.valueMissing) {
             e.preventDefault();                         
             PF.textContent = "Prénom manquant";
-            PF.style.color = "red";
+            PF.style.color = "#5e0000";
         }
         else if(npv.test(prenom.value) == false) {
             e.preventDefault();
@@ -291,7 +291,7 @@ function f_valid(e){                                // Création de la fonction 
         if (adresse.validity.valueMissing) {
             e.preventDefault();                         
             AF.textContent = "Adresse manquante";
-            AF.style.color = "red";
+            AF.style.color = "#5e0000";
         }
         else if(adr.test(adresse.value) == false) {
             e.preventDefault();
@@ -308,7 +308,7 @@ function f_valid(e){                                // Création de la fonction 
         if (ville.validity.valueMissing) {
             e.preventDefault();                         
             VF.textContent = "Ville manquante";
-            VF.style.color = "red";
+            VF.style.color = "#5e0000";
         }
         else if(npv.test(ville.value) == false) {
             e.preventDefault();
@@ -324,7 +324,7 @@ function f_valid(e){                                // Création de la fonction 
         if (email.validity.valueMissing) {
             e.preventDefault();                         
             EF.textContent = "E-Mail manquant";
-            EF.style.color = "red";
+            EF.style.color = "#5e0000";
         }
         else if(mail.test(email.value) == false) {
             e.preventDefault();
