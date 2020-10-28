@@ -316,7 +316,7 @@ function sendData (e){
     };
     
     // Requête serveur AJAX (POST)
-    /*
+    
     // Promesse
     function Send(xhr){
         return new Promise ((resolve, reject) => {
@@ -340,8 +340,8 @@ function sendData (e){
         location.href="validate.html";
 
     })
-    */
     
+    /*
     let xhr = new XMLHttpRequest();                                                     // On crée l'objet XMLHttpRequest()
     xhr.open("POST","http://localhost:3000/api/cameras/order", true);                   // On initialise notre requête avec open()
     xhr.setRequestHeader("Content-Type","application/json");                            // Option requise pour la methode POST envoie JSON
@@ -364,4 +364,5 @@ function sendData (e){
             location.href="validate.html";
         }
     }
+    */
 } 
