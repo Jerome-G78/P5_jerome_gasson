@@ -13,7 +13,7 @@ Resultat    > OK
 
 Action      > Lors du click sur "Détails..." d'un élément de le liste
 Attendu     > Fixer la variable "ID" de LocalStorage au produit
-                redirrection vers la page "produit.html"
+                redirection vers la page "produit.html"
 Resultat    > OK
 
 [PRODUITS]
@@ -58,9 +58,9 @@ Resultat    > OK
 [Formulaire]
 
 Action      > Cliquer sur le bouton "Confirmer ma commande"
-Attendu     > Verfification des divers champs 
+Attendu     > Vérification des divers champs 
 
-    Action      > Tester l'existance du nom
+    Action      > Tester l'existence du nom
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
     Resultat    > OK
 
@@ -68,11 +68,11 @@ Attendu     > Verfification des divers champs
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
         Resultat    > OK
 
-            Action      > Si données verifiés et valide
+            Action      > Si données vérifiés et valide
             Attendu     > fixer la chaine myLastName de LocalStorage a la chaine renseigné par l'utilisateur
             Resultat    > OK
     
-    Action      > Tester l'existance du prénom
+    Action      > Tester l'existence du prénom
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
     Resultat    > OK
 
@@ -80,11 +80,11 @@ Attendu     > Verfification des divers champs
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
         Resultat    > OK
 
-            Action      > Si données verifiés et valide
+            Action      > Si données vérifiés et valide
             Attendu     > fixer la chaine myFirstName de LocalStorage a la chaine renseigné par l'utilisateur
             Resultat    > OK
     
-    Action      > Tester l'existance de l'adresse
+    Action      > Tester l'existence de l'adresse
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
     Resultat    > OK
 
@@ -92,11 +92,11 @@ Attendu     > Verfification des divers champs
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
         Resultat    > OK
 
-            Action      > Si données verifiés et valide
+            Action      > Si données vérifiés et valide
             Attendu     > fixer la chaine myAddress de LocalStorage a la chaine renseigné par l'utilisateur
             Resultat    > OK
 
-    Action      > Tester l'existance de la ville
+    Action      > Tester l'existence de la ville
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
     Resultat    > OK
 
@@ -104,11 +104,11 @@ Attendu     > Verfification des divers champs
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
         Resultat    > OK
 
-            Action      > Si données verifiés et valide
+            Action      > Si données vérifiés et valide
             Attendu     > fixer la chaine myCity de LocalStorage a la chaine renseigné par l'utilisateur
             Resultat    > OK
     
-    Action      > Tester l'existance de l'adresse e-mail
+    Action      > Tester l'existence de l'adresse e-mail
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
     Resultat    > OK
 
@@ -116,7 +116,7 @@ Attendu     > Verfification des divers champs
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
         Resultat    > OK
 
-            Action      > Si données verifiés et valide
+            Action      > Si données vérifiés et valide
             Attendu     > fixer la chaine myEmail de LocalStorage a la chaine renseigné par l'utilisateur
             Resultat    > OK
 
@@ -129,9 +129,9 @@ Attendu > appel de function sendData
             envoie du formulaire et du tableau (objets) a l'API via la methode POST
 Resultat > OK
 
-Action > Récéption de la réponse serveur
+Action > Réception de la réponse serveur
 Attendu > récupère l'orderId de la commande et le place dans la variable du LocalStorage
-            redirrection vers validate.html
+            redirection vers validate.html
 Resultat > OK
 
 [VALIDATE]
