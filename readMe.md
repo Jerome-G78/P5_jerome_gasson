@@ -25,9 +25,9 @@
 
     Celui-ci devrait éxecuter une instance du serveur sur le port 3000 de la machine hôte.
 
-[Utilisation]
+[utilisation]
 
     - Depuis le dossier de révision, ouvrez la page "index.html" pour utiliser l'application web.
 
-[Révision]
+[révision]
     - V1.0 - Release
