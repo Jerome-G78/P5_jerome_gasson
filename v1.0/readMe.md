@@ -1,10 +1,10 @@
 [présentation]
 
-Il s'agit d'un projet de site E-Commerce, celui-ci est composée de 4 pages
-    - Page de Vue   (liste des produits)
-    - Page produit  (qui permet de personaliser un produit séléctionné)
-    - Page Panier   (contenant les achats, ainsi qu'un formulaire)
-    - page de validation de commande (Contient le récapitulatif)
+    Il s'agit d'un projet de site E-Commerce, celui-ci est composée de 4 pages
+        - Page de Vue   (liste des produits)
+        - Page produit  (qui permet de personaliser un produit séléctionné)
+        - Page Panier   (contenant les achats, ainsi qu'un formulaire)
+        - page de validation de commande (Contient le récapitulatif)
 
 [pré-requis]
 

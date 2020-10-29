@@ -172,7 +172,4 @@ Action      > Masquer le message de traitement de commande & afficher le résult
 Attendu     > Masquer de la DIV Working
                 Afficher la DIV Validation
 Resultat    > OK
-----------------------------------
-Action > Tester l'existance du nom
-Attendu > boolean (true/false)
-Resultat > OK/NOK
+----------------
