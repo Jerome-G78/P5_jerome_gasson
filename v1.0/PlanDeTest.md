@@ -62,11 +62,11 @@ Attendu     > Verfification des divers champs
 
     Action      > Tester l'existance du nom
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
-    Resultat    > OK/NOK
+    Resultat    > OK
 
         Action      > Tester la chaine renseigné via REGEX
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
-        Resultat    > OK/NOK
+        Resultat    > OK
 
             Action      > Si données verifiés et valide
             Attendu     > fixer la chaine myLastName de LocalStorage a la chaine renseigné par l'utilisateur
@@ -74,11 +74,11 @@ Attendu     > Verfification des divers champs
     
     Action      > Tester l'existance du prénom
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
-    Resultat    > OK/NOK
+    Resultat    > OK
 
         Action      > Tester la chaine renseigné via REGEX
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
-        Resultat    > OK/NOK
+        Resultat    > OK
 
             Action      > Si données verifiés et valide
             Attendu     > fixer la chaine myFirstName de LocalStorage a la chaine renseigné par l'utilisateur
@@ -86,11 +86,11 @@ Attendu     > Verfification des divers champs
     
     Action      > Tester l'existance de l'adresse
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
-    Resultat    > OK/NOK
+    Resultat    > OK
 
         Action      > Tester la chaine renseigné via REGEX
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
-        Resultat    > OK/NOK
+        Resultat    > OK
 
             Action      > Si données verifiés et valide
             Attendu     > fixer la chaine myAddress de LocalStorage a la chaine renseigné par l'utilisateur
@@ -98,11 +98,11 @@ Attendu     > Verfification des divers champs
 
     Action      > Tester l'existance de la ville
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
-    Resultat    > OK/NOK
+    Resultat    > OK
 
         Action      > Tester la chaine renseigné via REGEX
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
-        Resultat    > OK/NOK
+        Resultat    > OK
 
             Action      > Si données verifiés et valide
             Attendu     > fixer la chaine myCity de LocalStorage a la chaine renseigné par l'utilisateur
@@ -110,11 +110,11 @@ Attendu     > Verfification des divers champs
     
     Action      > Tester l'existance de l'adresse e-mail
     Attendu     > boolean (true/false)  / si false : afficher un message d'erreur.
-    Resultat    > OK/NOK
+    Resultat    > OK
 
         Action      > Tester la chaine renseigné via REGEX
         Attendu     > boolean (true/false) / si false : afficher un message d'avertissement.
-        Resultat    > OK/NOK
+        Resultat    > OK
 
             Action      > Si données verifiés et valide
             Attendu     > fixer la chaine myEmail de LocalStorage a la chaine renseigné par l'utilisateur
