@@ -1,15 +1,15 @@
 [présentation]
 
-    Il s'agit d'un projet de site E-Commerce, celui-ci est composée de 4 pages
+    Il s'agit d'un projet de site E-Commerce, celui-ci est composé de 4 pages
         - Page de Vue   (liste des produits)
         - Page produit  (qui permet de personaliser un produit séléctionné)
         - Page Panier   (contenant les achats, ainsi qu'un formulaire)
         - page de validation de commande (Contient le récapitulatif)
 
-[pré-requis]
+[prérequis]
 
     - Pour le faire fonctionner vous devez disposer d'un Navigateur récent (Firefox 80/Chrome 86)
-    - avoir installer Node.js (avec le packages npm uuid)
+    - avoir installé Node.js (avec le packages npm uuid)
     - récupérer le repository : https://github.com/OpenClassrooms-Student-Center/JWDP5.git
 
 [installation]
@@ -23,7 +23,7 @@
     Depuis le dossier JWDP5-master et via la commande :
     $node server.js
 
-    Celui-ci devrais éxecuter une instance du serveur sur le port 3000 de la machine hôte.
+    Celui-ci devrait éxecuter une instance du serveur sur le port 3000 de la machine hôte.
 
 [Utilisation]
 
