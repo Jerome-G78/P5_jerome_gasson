@@ -145,4 +145,10 @@ btn.addEventListener('click', function(){
     localStorage.setItem(id+"-Cart-ID", id);
 
     document.getElementById("OnSucess").innerHTML="Produit ajouté!";
+
+    // Effacer les Messages sous 3 secondes
+    setTimeout(function() {
+    document.getElementById('OnError').innerHTML = "";
+    document.getElementById('OnSucess').innerHTML = "";
+    },2000);
 });

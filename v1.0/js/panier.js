@@ -280,6 +280,11 @@ function f_valid(e){
     else
     {
         document.getElementById("OnError").innerHTML="Votre panier est vide!";
+
+        // Effacer les Messages sous 3 secondes
+        setTimeout(function() {
+        document.getElementById('OnError').innerHTML = "";
+        },2000);
     }
 }
 
@@ -334,4 +339,4 @@ function sendData (e){
         localStorage.setItem("orderID", xhr.response.orderId);
         location.href="validate.html";
     })
-} 
+}

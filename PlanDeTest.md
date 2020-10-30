@@ -6,6 +6,10 @@ Action      > Récupération de la liste des produits au format JSON
 Attendu     > xhr.status = 200
 Resultat    > OK
 
+    Action      > En cas d'érreur de liaison avec le serveur
+    Attendu     > e = 0 / Affichage d'un message d'erreur.
+    Resultat    > KO
+
 Action      > Listing des produits via une boucle for & création des objets
 Attendu     > Function CreateItem / créer un objet pour chaque produit
                 Function addElement / ajouter les produits dans le tableau
@@ -33,6 +37,7 @@ Resultat    > OK
 
 Action      > Ajouter au pannier & affichage du message de confirmation
 Attendu     > Modification des variables du local Storage : id+"-Cart-qty" / id+"-Cart-lense" / id+"-Cart-ID" et affichage du message de succès : Produit ajouté!
+                Le message est masqué automatiquement après 2sec.
 Resultat    > OK
 
 [PANIER]
@@ -56,6 +61,11 @@ Attendu     > localStorage.clear(); / Vider LocalStorage
 Resultat    > OK
 
 [Formulaire]
+
+Action      > Cliquer sur le bouton "Confirmer ma commande" avec un panier vide
+Attendu     > Verificaton du pannier / Affichage d'un message d'erreur.
+                ce message s'efface après 2 sec.
+Resultat    > KO
 
 Action      > Cliquer sur le bouton "Confirmer ma commande"
 Attendu     > Vérification des divers champs 
