@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr-FR">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="Site de vente en ligne thématique">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	<!-- Intégration du frameworks bootstrap4 -->
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+		<title>Orinoco - Nos produits</title>
+		
+    </head>
+    
+	<body class="container">
+
+		<header id="Banner">
+			<a href="index.html" title="Retour vers l'accueil du site"><img class="col-sm-12 col-md-12 col-lg-6" src="images/Banner.png" alt="Bannière du site Orinoco"/></a>
+			<h1>Votre site de vente en ligne thématique!</h1>
+		</header>
+		
+		<div class="Menu">
+			<nav>
+				<ul>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="index.html" title="Accueil du site Orinoco"> Accueil </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="produits.html" title="Produit"> Produit </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="panier.html" title="Accès a votre panier"> Panier</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-image">
+				<caption>Produit</caption>
+				<thead class="thead-dark">
+					<tr class="text-center">
+						<th>Produit</th>
+						<th>Image</th>
+						<th>Descriptif</th>
+						<th>Lentille</th>
+						<th>Prix €</th>
+					</tr>
+				</thead>
+				<tbody id="ProductList">
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row"> 
+			<div class="col text-center">
+				<button class="center btn btn-primary" id="AddCart" type="button">Ajouter au Pannier</button>
+			</div>
+		</div>
+		<div class="rounded text-dark bg-warning text-center"><span id="OnError"></span></div>
+		<div class="rounded text-white bg-success text-center"><span id="OnSucess"></span></div>
+
+		<footer id="Footer">
+			<p> &copy; 2020 - Orinoco - tous droits résérvés.</p>
+		</footer>
+		
+		<!-- Javascript START-->
+		<script src="js/produits.js"></script>
+		<!-- Javascript END-->
+
+	</body>
+
+</html>

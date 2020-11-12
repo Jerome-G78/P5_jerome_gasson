@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr-FR">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="Site de vente en ligne thématique">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	<!-- Intégration du frameworks bootstrap4 -->
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+		<title>Orinoco - Panier</title>
+		
+    </head>
+    
+ 	<body class="container">
+
+		<header id="Banner">
+			<a href="index.html" title="Retour vers l'accueil du site"><img class="col-sm-12 col-md-12 col-lg-6" src="images/Banner.png" alt="Bannière du site Orinoco"/></a>
+			<h1>Votre site de vente en ligne thématique!</h1>
+		</header>
+		
+		<div class="Menu">
+			<nav>
+				<ul>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="index.html" title="Accueil du site Orinoco"> Accueil </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="produits.html" title="Produit"> Produit </a></li>
+					<li class="col-sm-4 col-md-4 col-lg-4"><a href="panier.html" title="Accès a votre panier"> Panier</a></li>
+				</ul>
+			</nav>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-image table-striped">
+                <caption>Votre panier</caption>
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>Produit</th>
+                        <th>Image</th>
+                        <th>description</th>
+                        <th>Lentille</th>
+                        <th>Quantité</th>
+                        <th>Prix €</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Total de votre commande</td>
+                        <td id="Total">0</td>
+                    </tr>
+                </tfoot>
+                <tbody id="ProductList">
+                    <tr id="emptyCart">
+                        <td colspan="6">Votre panier est vide :( </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row"> 
+            <div class="col text-center">
+                <input class="center btn btn-danger" id ="clean" type="button" value="Vider le panier"/>
+            </div>
+        </div>
+        
+        <div class="Recapitulatif">
+
+            <form id="commander" method="POST" action="validate.html">
+
+                <div class="row"> 
+                    <div class="col">
+
+                        <fieldset class="form-group text-right">
+                            <legend class="text-center"> Identification </legend>
+                            
+                            <label class="col-xs-3 col-md-3 col-lg-3 control-label text-left" for="nom"> Nom: </label>
+                            <input class="col-xs-6 col-md-8 col-lg-7 text-center" id="nom" type="text" name="nom"  placeholder="Ex. Lewis" size="25px" maxlength="25" required="Yes" autofocus="Yes"/><br/>
+                            <span id="ErrorNom"></span><br/><br/>
+
+                            <label class="col-xs-3 col-md-3 col-lg-3 control-label text-left" for="prenom"> Prénom: </label>
+                            <input class="col-xs-9 col-md-8 col-lg-7 text-center" id="prenom" type="text" name="prenom"  placeholder="Ex. Hamilton" size="25px" maxlength="25" required="Yes" autofocus="Yes"/><br/>
+                            <span id="ErrorPrenom"></span><br/><br/>
+
+                            <label class="col-xs-3 col-md-3 col-lg-3 control-label text-left" for="adress"> Adresse: </label>
+                            <input class="col-xs-9 col-md-8 col-lg-7 text-center" id="adress" type="text" name="adress"  placeholder="Ex. 14 Rue WallStreet" size="25px" maxlength="200" required="Yes" autofocus="Yes"/><br/> 
+                            <span id="ErrorAdress"></span><br/><br/>
+
+                            <label class="col-xs-3 col-md-3 col-lg-3 control-label text-left" for="city"> Ville: </label>
+                            <input class="col-xs-9 col-md-8 col-lg-7 text-center" id="city" type="text" name="city"  placeholder="Ex. New York" size="25px" maxlength="200" required="Yes" autofocus="Yes"/><br/>
+                            <span id="ErrorCity"></span><br/><br/>
+
+                            <label class="col-xs-3 col-md-3 col-lg-3 control-label text-left" for="email"> Email: </label>
+                            <input class="col-xs-9 col-md-8 col-lg-7 text-center" id="email" type="mail" name="email"  placeholder="Ex. Tom@Centuryflop.com" size="25px" maxlength="200" required="Yes" autofocus="Yes"/><br/>
+                            <span id="ErrorMail"></span><br/>
+                        
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="row"> 
+                    <div class="col text-center">
+                        <input class="center btn btn-primary" id = "validation" type="submit" value="Confirmer ma commande"/>
+                    </div>
+                </div>
+
+                
+            </form>
+
+        </div>
+
+        <div class="rounded text-dark bg-warning text-center"><span id="OnError"></span></div>
+
+		<footer id="Footer">
+			<p> &copy; 2020 - Orinoco - tous droits résérvés.</p>
+        </footer>
+        
+        <!-- Javascript START-->
+        <script src="js/panier.js"></script>
+		<!-- Javascript END-->
+
+	</body>
+
+</html>

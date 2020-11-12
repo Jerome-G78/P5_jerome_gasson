@@ -30,4 +30,4 @@
     - Depuis le dossier de révision, ouvrez la page "index.html" pour utiliser l'application web.
 
 [révision]
-    - V1.0 - Release
+    - V1.1 - Release
