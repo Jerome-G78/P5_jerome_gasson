@@ -32,4 +32,3 @@
 [révision]
 
     V1.1 - Release
-    https://jerome-g78.github.io/P5_jerome_gasson/v1.1/
