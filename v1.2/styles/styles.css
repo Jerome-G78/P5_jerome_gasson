@@ -1,129 +1,128 @@
-/* Fiche de Styles*/
-
-/* Mise en page Générale */
-@font-face 
-{
-	/* Police Générale */
-
-	font-family: 'belligerent';
-	src: url('../fonts/Belligerent-Madness/belligerent.woff') format('woff');
+@charset "UTF-8";
+@font-face {
+  /* Police Générale */
+  font-family: "belligerent";
+  src: url("../fonts/Belligerent-Madness/belligerent.woff") format("woff");
 }
 
-body
-{
-    font-family: 'belligerent';
-    font-size: 1.2em;
-    /* BASE EM 16px */
-
-    background-color:#f3e9f1;
-    /* RESET */
-    margin:0;
-    padding:0;
+body {
+  font-family: "belligerent";
+  font-size: 1.2em;
+  /* BASE EM 16px */
+  background-color: #f3e9f1;
+  /* RESET */
+  margin: 0;
+  padding: 0;
+  /* Mise en page du Menu */
+  /* Tableau Recapitulatif */
+  /* Validation */
+  /* Autres */
 }
 
-#Banner
-{
-    width:100%;
-    height:auto;
-    text-align: center;
-
-    background-color:#f3e9f1;
-/*  border:1px solid red; /* DEBUG */
+body #Banner {
+  width: 100%;
+  height: auto;
+  background-color: #f3e9f1;
+  /* border:1px solid red; /* DEBUG */
 }
 
-#Banner img
-{
-    margin: 1em 0;
-/*  border:1px solid red; /* DEBUG */
+body #Banner h1 {
+  font-size: 2em;
 }
 
-#Footer
-{
-    width:100%;
-    height:auto;
-
-    padding: 0.001em 0;
-
-    text-align: center;
-    background-color:#f3e9f1;
-/*  border:1px solid red; /* DEBUG */
+body #Banner img {
+  width: 100%;
 }
 
-/* Mise en page du Menu */
-
-nav li
-{
-    display: inline-block;
-    padding:0 2em;
-    margin:0 0;
-    text-align: center;
-/*  border:1px solid red; /* DEBUG */
+body .Menu nav li {
+  display: inline-block;
+  padding: 0 2em;
+  margin: 0 0;
+  text-align: center;
+  font-size: 1em;
+  /*  border:1px solid red; /* DEBUG */
 }
 
-.Menu ul
-{
-    font-size: 1.5em;
-    display: flex;
-    justify-content: center;
-
-    list-style-type: none;
-
-    background:-webkit-linear-gradient(to bottom right, #d8852e, #905bfd);
-	background:-moz-linear-gradient(to bottom right, #d8852e, #905bfd);
-	background:-o-linear-gradient(to bottom right, #d8852e, #905bfd);
-    background:linear-gradient(to bottom right, #d8852e, #905bfd);
-    
-    border:1px solid transparent;
+body .Menu ul {
+  font-size: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style-type: none;
+  background: -webkit-gradient(linear, left top, right bottom, from(#d8852e), to(#905bfd));
+  background: linear-gradient(to bottom right, #d8852e, #905bfd);
+  border: 1px solid transparent;
 }
 
-.Menu a
-{
-    color:black;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 1px solid transparent;
+body .Menu a {
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
-.Menu a:hover
-{
-    color:white;
-    border: 1px solid green;
+body .Menu a.active {
+  color: white;
 }
 
-/* Tableau Recapitulatif */
-
-.Recapitulatif
-{
-    display: flex;
-    justify-content: center;
-    margin: 2em 3em;
-    padding: 1em 1em;
-    border-radius:0.43em;
-    background-color: #b26e96;
-    box-shadow:0 0 0.5em #d8852e;
+body .Menu a:hover {
+  color: rgba(255, 255, 255, 0.514);
 }
 
-table, th, td, tr
-{
-    text-align: center;
-    border-collapse:collapse;
-    border: 0.005em solid #d8852e;
+body #Footer {
+  width: 100%;
+  height: auto;
+  padding: 0.001em 0;
+  text-align: center;
+  background-color: #f3e9f1;
+  /*  border:1px solid red; /* DEBUG */
 }
 
-/* Validation */
-
-#Working
-{
-    margin: 2em 3em;
-    padding: 1em 1em;
-    border-radius:0.43em;
-    background-color: #905bfd;
-    box-shadow:0 0 0.5em #d8852e;
+body .Recapitulatif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2em 3em;
+  padding: 1em 1em;
+  border-radius: 0.43em;
+  background-color: #b26e96;
+  -webkit-box-shadow: 0 0 0.5em #d8852e;
+          box-shadow: 0 0 0.5em #d8852e;
 }
 
-/* Autres */
-caption, #clean, #AddCart
-{
-    display: none;
+body table,
+body th,
+body td,
+body tr {
+  text-align: center;
+  border-collapse: collapse;
+  border: 0.005em solid #454d55;
 }
+
+body #Working {
+  margin: 2em 3em;
+  padding: 1em 1em;
+  border-radius: 0.43em;
+  background-color: #905bfd;
+  -webkit-box-shadow: 0 0 0.5em #d8852e;
+          box-shadow: 0 0 0.5em #d8852e;
+}
+
+body caption,
+body #clean,
+body #AddCart {
+  display: none;
+}
+
+.nav-link {
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=styles.css.map */

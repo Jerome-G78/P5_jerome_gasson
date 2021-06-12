@@ -4,6 +4,12 @@
 // let UrlAPI = 'http://localhost:3001/api/';
 let UrlAPI = 'https://shadsoft.fr:3001/api/';
 
+// masquer le tableau en chargment
+const Loading = document.getElementById('Loading');
+const Table = document.getElementById('ProductsTable');
+const MenuLinks = document.getElementsByTagName('a');
+Table.style.display = "none";
+
 // On crée l'objet XMLHttpRequest()
 let xhr = new XMLHttpRequest();
 
@@ -25,6 +31,7 @@ function Load(xhr) {
 
         // On envoie la requête
         xhr.send();
+        console.log(xhr);
 
         xhr.onload = () => resolve(xhr.status);
         xhr.onerror = () => reject(xhr.status);
@@ -32,7 +39,7 @@ function Load(xhr) {
 }
 
 Load(xhr).then(() => {
-    // Si le status HTTP est 200                 
+    // Si le status HTTP est 200
 
     // Boucle for pour créer la liste des produits
     for (i = 0; i < xhr.response.length; i++) {
@@ -50,8 +57,24 @@ Load(xhr).then(() => {
         })
     }
 
+    Loading.style.display = "none";
+    Table.style.display = "inline-block";
+    
+    MenuLinks[1].setAttribute("class", "nav-link active");
+    MenuLinks[2].setAttribute("class", "nav-link ");
+    MenuLinks[3].setAttribute("class", "nav-link ");
+
+    console.log('Menu Activated');
+
 }).catch((e) => {
-    document.getElementById("OnError").innerHTML = "La requête à échoué : " + e;
+    if(e == 0){
+        Loading.style.display = "none";
+        document.getElementById("OnError").innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i> Une erreur est survenue : <br />
+            Impossible de joindre le serveur, veuillez réésayer ulterieurment.
+        `;
+    }
+    
 })
 
 // Fonction de création d'un produit

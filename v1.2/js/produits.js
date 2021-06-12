@@ -4,6 +4,11 @@
 // let UrlAPI = 'http://localhost:3001/api/';
 let UrlAPI = 'https://shadsoft.fr:3001/api/';
 
+const Table = document.getElementById('ProductsTable');
+const AddProduct = document.getElementById('AddCart');
+Table.style.display = "none";
+AddProduct.style.display = "none";
+
 // On crée l'objet XMLHttpRequest()
 let xhr = new XMLHttpRequest();
 
@@ -33,6 +38,7 @@ function Load(xhr) {
 
 Load(xhr).then(() => {
     // Si le status HTTP est 200, on affiche la réponse
+    Table.style.display = "inline-block";
 
     // Affichage du produit séléctionnée
     document.getElementById("AddCart").style.display = "inline-block";
@@ -53,7 +59,14 @@ Load(xhr).then(() => {
     }
 
 }).catch((e) => {
-    document.getElementById("OnError").innerHTML = "La requête à échoué : " + e;
+    Table.style.display = "none";
+    AddProduct.style.display = "none";
+    document.getElementById("OnError").innerHTML = "Oups! - Vous n'avez pas sélectionné de produit, vous allez être redirrigé vers l'accueil...";
+    setTimeout(function () {
+        document.getElementById('OnError').innerHTML = "";
+        document.getElementById('OnSucess').innerHTML = "";
+        document.location.href="index.html"; 
+    }, 1500);
 })
 
 // Fonction de création d'un produit
